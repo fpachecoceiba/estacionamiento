@@ -5,11 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "moto", uniqueConstraints = { @UniqueConstraint(columnNames = { "placa" }) })
+@Table(name = "moto")
 public class Moto {
 
 	@Id
@@ -17,8 +18,9 @@ public class Moto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idMoto;
 	
-	@Column(name = "placa", nullable = false)
-	private String placa;
+	@ManyToOne
+	@JoinColumn(name = "id_vehiculo")
+	private Vehiculo idVehiculo;
 	
 	@Column(name = "cilindraje", nullable = false)
 	private Double cilindraje;
@@ -27,10 +29,8 @@ public class Moto {
 		super();
 	}
 
-	public Moto(Long idMoto, String placa, Double cilindraje) {
-		super();
+	public Moto(Long idMoto, Double cilindraje) {
 		this.idMoto = idMoto;
-		this.placa = placa;
 		this.cilindraje = cilindraje;
 	}
 
@@ -42,13 +42,7 @@ public class Moto {
 		this.idMoto = idMoto;
 	}
 
-	public String getPlaca() {
-		return placa;
-	}
-
-	public void setPlaca(String placa) {
-		this.placa = placa;
-	}
+	
 
 	public Double getCilindraje() {
 		return cilindraje;
@@ -56,6 +50,13 @@ public class Moto {
 
 	public void setCilindraje(Double cilindraje) {
 		this.cilindraje = cilindraje;
+	}
+	
+	public Vehiculo getIdVehiculo() {
+		return idVehiculo;
+	}
+	public void setIdVehiculo(Vehiculo idVehiculo) {
+		this.idVehiculo = idVehiculo;
 	}
 
 }

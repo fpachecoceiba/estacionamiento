@@ -2,13 +2,15 @@ package com.co.ceiba.parqueadero.servicio;
 
 import java.util.List;
 
+import com.co.ceiba.parqueadero.dominio.VehiculoDTO;
+
 public interface VehiculoService {
 	
-	Object guardar(Object vehiculoDTO);
+	VehiculoDTO guardar(VehiculoDTO vehiculoDTO);
 
-	Object consultar(Long idVehiculo);
+	VehiculoDTO consultar(Long idVehiculo);
 
-	List<Object> listar();
+	List<VehiculoDTO> listar();
 
 	Integer eliminar(Long idVehiculo);
 

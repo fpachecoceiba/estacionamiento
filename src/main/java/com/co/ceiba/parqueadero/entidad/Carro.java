@@ -5,11 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "carro", uniqueConstraints={@UniqueConstraint(columnNames ={"placa"})})
+@Table(name = "carro")
 public class Carro {
 
 	@Id
@@ -17,20 +18,19 @@ public class Carro {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idCarro;
 
-	@Column(name = "placa", nullable = false)
-	private String placa;
-
 	@Column(name = "modelo", nullable = false)
 	private String modelo;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "id_vehiculo")
+	private Vehiculo idVehiculo;
 
 	public Carro() {
-		super();
-
 	}
 
-	public Carro(Long idCarro, String placa, String modelo) {
-		super();
-		this.placa = placa;
+	public Carro(Long idCarro, String modelo) {
+		
 		this.modelo = modelo;
 		this.idCarro = idCarro;
 	}
@@ -43,13 +43,6 @@ public class Carro {
 		this.idCarro = idCarro;
 	}
 
-	public String getPlaca() {
-		return placa;
-	}
-
-	public void setPlaca(String placa) {
-		this.placa = placa;
-	}
 
 	public String getModelo() {
 		return modelo;
@@ -58,5 +51,15 @@ public class Carro {
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
 	}
+	
+	public Vehiculo getIdVehiculo() {
+		return idVehiculo;
+	}
+	public void setIdVehiculo(Vehiculo idVehiculo) {
+		this.idVehiculo = idVehiculo;
+	}
+	
+
+	
 
 }

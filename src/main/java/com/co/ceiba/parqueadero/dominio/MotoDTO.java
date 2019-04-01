@@ -1,18 +1,16 @@
 package com.co.ceiba.parqueadero.dominio;
 
-public class MotoDTO {
+public class MotoDTO extends VehiculoDTO {
 	private Long idMoto;
-	private String placa;
 	private Double cilindraje;
 
 	public MotoDTO() {
 		super();
 	}
 
-	public MotoDTO(Long idMoto, String placa, Double cilindraje) {
-		super();
+	public MotoDTO(Long idMoto, Double cilindraje, Long idVehiculo, String placa,String tipoVehiculo) {
+		super(idVehiculo, placa,tipoVehiculo);
 		this.idMoto = idMoto;
-		this.placa = placa;
 		this.cilindraje = cilindraje;
 	}
 
@@ -22,14 +20,6 @@ public class MotoDTO {
 
 	public void setIdMoto(Long idMoto) {
 		this.idMoto = idMoto;
-	}
-
-	public String getPlaca() {
-		return placa;
-	}
-
-	public void setPlaca(String placa) {
-		this.placa = placa;
 	}
 
 	public Double getCilindraje() {
