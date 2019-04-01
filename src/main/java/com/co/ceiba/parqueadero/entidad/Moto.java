@@ -9,38 +9,37 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "carro", uniqueConstraints={@UniqueConstraint(columnNames ={"placa"})})
-public class Carro {
+@Table(name = "moto", uniqueConstraints = { @UniqueConstraint(columnNames = { "placa" }) })
+public class Moto {
 
 	@Id
-	@Column(name = "id_carro")
+	@Column(name = "id_moto")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idCarro;
-
+	private Long idMoto;
+	
 	@Column(name = "placa", nullable = false)
 	private String placa;
+	
+	@Column(name = "cilindraje", nullable = false)
+	private Double cilindraje;
 
-	@Column(name = "modelo", nullable = false)
-	private String modelo;
-
-	public Carro() {
+	public Moto() {
 		super();
-
 	}
 
-	public Carro(Long idCarro, String placa, String modelo) {
+	public Moto(Long idMoto, String placa, Double cilindraje) {
 		super();
+		this.idMoto = idMoto;
 		this.placa = placa;
-		this.modelo = modelo;
-		this.idCarro = idCarro;
+		this.cilindraje = cilindraje;
 	}
 
-	public Long getIdCarro() {
-		return idCarro;
+	public Long getIdMoto() {
+		return idMoto;
 	}
 
-	public void setIdCarro(Long idCarro) {
-		this.idCarro = idCarro;
+	public void setIdMoto(Long idMoto) {
+		this.idMoto = idMoto;
 	}
 
 	public String getPlaca() {
@@ -51,12 +50,12 @@ public class Carro {
 		this.placa = placa;
 	}
 
-	public String getModelo() {
-		return modelo;
+	public Double getCilindraje() {
+		return cilindraje;
 	}
 
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
+	public void setCilindraje(Double cilindraje) {
+		this.cilindraje = cilindraje;
 	}
 
 }

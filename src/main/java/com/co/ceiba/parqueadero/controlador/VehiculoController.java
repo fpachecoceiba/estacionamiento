@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.co.ceiba.parqueadero.dominio.CarroDTO;
+import com.co.ceiba.parqueadero.dominio.MotoDTO;
 import com.co.ceiba.parqueadero.servicio.VehiculoService;
 
 @RestController
@@ -16,8 +17,14 @@ public class VehiculoController {
 	private VehiculoService vehiculoService;
 
 	@PostMapping("/carro")
-	public Object guardar(@RequestBody CarroDTO carroDTO) {
+	public Object guardarCarro(@RequestBody CarroDTO carroDTO) {
 		return vehiculoService.guardar(carroDTO);
 	}
+	
+	@PostMapping("/moto")
+	public Object guardarMoto(@RequestBody MotoDTO motoDTO) {
+		return vehiculoService.guardar(motoDTO);
+	}
+
 
 }
