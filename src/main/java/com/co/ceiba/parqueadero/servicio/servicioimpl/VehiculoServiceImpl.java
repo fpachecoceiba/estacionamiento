@@ -16,6 +16,7 @@ import com.co.ceiba.parqueadero.repositorio.CarroRepository;
 import com.co.ceiba.parqueadero.repositorio.MotoRepository;
 import com.co.ceiba.parqueadero.repositorio.VehiculoRepository;
 import com.co.ceiba.parqueadero.servicio.VehiculoService;
+import com.co.ceiba.parqueadero.servicio.reglas.ValidarVehiculo;
 
 @Service
 public class VehiculoServiceImpl implements VehiculoService {
@@ -26,9 +27,12 @@ public class VehiculoServiceImpl implements VehiculoService {
 	@Autowired
 	private MotoRepository motoRepository;
 
+	@Autowired
+	private VehiculoService vehiculoService;
+
 	@Override
 	public VehiculoDTO guardar(VehiculoDTO vehiculoDTO) {
-		
+		new ValidarVehiculo(vehiculoService).verificar(vehiculoDTO.getPlaca());
 		if (vehiculoDTO instanceof CarroDTO) {
 			Vehiculo vehiculo = getVehiculoEntidad(vehiculoDTO);
 			vehiculo.setTipoVehiculo(TipoVehiculo.CARRO.toString());
@@ -65,6 +69,16 @@ public class VehiculoServiceImpl implements VehiculoService {
 	@Override
 	public Integer eliminar(Long idVehiculo) {
 		return null;
+	}
+
+	@Override
+	public VehiculoDTO buscarPorPlaca(String placa) {
+		Vehiculo vehiculo = this.vehiculoRepository.findByPlaca(placa);
+		if (vehiculo != null) {
+			return getVehiculoDTO(vehiculo);
+		} else {
+			return null;
+		}
 	}
 
 	public static CarroDTO getCarroDTO(Carro carro) {

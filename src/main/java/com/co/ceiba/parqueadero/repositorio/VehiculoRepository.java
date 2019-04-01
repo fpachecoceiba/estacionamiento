@@ -7,4 +7,5 @@ import com.co.ceiba.parqueadero.entidad.Vehiculo;
 
 public interface VehiculoRepository extends JpaRepository<Vehiculo, Long>, JpaSpecificationExecutor<Vehiculo> {
 
+	public Vehiculo findByPlaca(String placa);
 }

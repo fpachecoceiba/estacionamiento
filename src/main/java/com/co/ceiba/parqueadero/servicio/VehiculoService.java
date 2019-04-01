@@ -14,4 +14,6 @@ public interface VehiculoService {
 
 	Integer eliminar(Long idVehiculo);
 
+	VehiculoDTO buscarPorPlaca(String placa);
+
 }
