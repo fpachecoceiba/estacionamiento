@@ -11,8 +11,8 @@ public class ValidarVehiculo {
 		this.vehiculoService = vehiculoService;
 	}
 	public void verificar(String placa) {
-		VehiculoDTO propietatio = vehiculoService.buscarPorPlaca(placa);
-		if (propietatio != null) {
+		VehiculoDTO vehiculoDTO = vehiculoService.buscarPorPlaca(placa);
+		if (vehiculoDTO != null) {
 			throw new ExisteVehiculoException(MENSAJE);
 		}
 	}
