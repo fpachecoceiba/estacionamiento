@@ -23,7 +23,7 @@ public class ValidarVehiculoTest {
 		try {
 			validarVehiculo.verificar(PLACA);
 		} catch (ExisteVehiculoException e) {
-			assertEquals(e.getMessage(), ValidarVehiculo.MENSAJE);
+			assertEquals(e.getMessage(), ValidarVehiculo.MENSAJE); 
 		}
 		 
 	}
