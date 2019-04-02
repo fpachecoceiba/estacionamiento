@@ -30,7 +30,7 @@ public class EntradaParqueo {
 	@Column(name = "tipo_vehiculo", nullable = false)
 	private String tipoVehiculo;
  
-	 @ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "id_vehiculo")
 	private Vehiculo idVehiculo;
 

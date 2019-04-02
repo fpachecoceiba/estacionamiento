@@ -76,7 +76,7 @@ public class VehiculoServiceImpl implements VehiculoService {
 	@Override
 	public VehiculoDTO buscarPorPlaca(String placa) {
 		Vehiculo vehiculo = this.vehiculoRepository.findByPlaca(placa);
-		if (vehiculo != null) {
+		if (vehiculo != null) { 
 			return getVehiculoDTO(vehiculo);
 		} else {
 			return null;

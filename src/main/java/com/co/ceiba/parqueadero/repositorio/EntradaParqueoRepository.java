@@ -14,4 +14,7 @@ public interface EntradaParqueoRepository
 	
 	  @Query(value = "SELECT ent FROM entrada_parqueo ent WHERE ent.tipoVehiculo = :tipoVehiculo AND ent.activo = true")
 	  List<EntradaParqueo> listaActivas(@Param(value = "tipoVehiculo")  String tipoVehiculo);
+	  
+	  @Query(value = "SELECT ent FROM entrada_parqueo ent WHERE ent.idVehiculo.placa = :placa AND ent.activo = true")
+	  EntradaParqueo consultarActivaPorId(@Param(value = "placa")  String placa);
 }

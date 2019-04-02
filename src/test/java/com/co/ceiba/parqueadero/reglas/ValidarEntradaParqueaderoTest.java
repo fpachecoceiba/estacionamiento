@@ -1,12 +1,14 @@
 package com.co.ceiba.parqueadero.reglas;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import org.junit.Test;
 
+import com.co.ceiba.parqueadero.servicio.EntradaParqueoService;
 import com.co.ceiba.parqueadero.servicio.reglas.ValidarEntradaParqueadero;
 
 public class ValidarEntradaParqueaderoTest {
@@ -19,17 +21,17 @@ public class ValidarEntradaParqueaderoTest {
 
 	@Test
 	public void validarEntradaNoValida() {
-
-		ValidarEntradaParqueadero validarEntradaParqueadero = new ValidarEntradaParqueadero();
+		EntradaParqueoService entradaParqueoService = mock(EntradaParqueoService.class);
+		ValidarEntradaParqueadero validarEntradaParqueadero = new ValidarEntradaParqueadero(entradaParqueoService);
 		boolean valida = validarEntradaParqueadero.ingresoValidoSegunDiaPlaca(PLACA_NO_VALIDA, fechaEntrada);
-		assertEquals(valida, false);
-
+		assertEquals(valida, false); 
+ 
 	}
 	
 	@Test
 	public void validarEntradaValida() {
-
-		ValidarEntradaParqueadero validarEntradaParqueadero = new ValidarEntradaParqueadero();
+		EntradaParqueoService entradaParqueoService = mock(EntradaParqueoService.class);
+		ValidarEntradaParqueadero validarEntradaParqueadero = new ValidarEntradaParqueadero(entradaParqueoService);
 		boolean valida = validarEntradaParqueadero.ingresoValidoSegunDiaPlaca(PLACA_VALIDA, fechaEntrada);
 		assertEquals(valida, true);
 

@@ -27,7 +27,7 @@ public class ValidarVehiculoTest {
 		} catch (ExisteVehiculoException e) { 
 			assertEquals(e.getMessage(), ValidarVehiculo.MENSAJE);   
 		} 
-		 
+		  
 	}
 	
 	@Test

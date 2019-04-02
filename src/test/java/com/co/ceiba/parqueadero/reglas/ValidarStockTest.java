@@ -23,7 +23,7 @@ public class ValidarStockTest {
 	
 	private static final Integer STOCK_CARRO_NO_DISPONIBLE = 0;
 	private static final Integer STOCK_MOTO_NO_DISPONIBLE = 0;
-	 
+	  
 	 
 
 	@Test

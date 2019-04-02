@@ -9,4 +9,5 @@ import com.co.ceiba.parqueadero.entidad.EntradaParqueo;
 public interface EntradaParqueoService {
 	EntradaParqueoDTO registrar(VehiculoDTO vehiculo);
 	List<EntradaParqueo> listarActivas(String tipo);
+	EntradaParqueo consultarActivaPorId(String placa);
 }

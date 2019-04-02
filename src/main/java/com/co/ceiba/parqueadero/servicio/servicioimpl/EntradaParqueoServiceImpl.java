@@ -44,8 +44,12 @@ public class EntradaParqueoServiceImpl implements EntradaParqueoService {
 		new ValidarStock(entradaParqueoService).validarStock(tipoVehiculo,
 				getStock(optVehiculo.get().getTipoVehiculo()));
 
-		if (!new ValidarEntradaParqueadero().ingresoValidoSegunDiaPlaca(placa, fechaEntrada)) {
+		if (!new ValidarEntradaParqueadero(entradaParqueoService).ingresoValidoSegunDiaPlaca(placa, fechaEntrada)) {
 			throw new ParqueaderoNoDisponibleException(ValidarEntradaParqueadero.MENSAJE);
+		}
+
+		if (new ValidarEntradaParqueadero(entradaParqueoService).existeEntradaRegistrada(placa)) {
+			throw new ParqueaderoNoDisponibleException(ValidarEntradaParqueadero.MENSAJE_EXISTE);
 		}
 
 		EntradaParqueoDTO entradaParqueoDTO = new EntradaParqueoDTO();
@@ -81,6 +85,11 @@ public class EntradaParqueoServiceImpl implements EntradaParqueoService {
 		} else {
 			return STOCK_MOTO;
 		}
+	}
+
+	@Override
+	public EntradaParqueo consultarActivaPorId(String placa) {
+		return entradaParqueoRepository.consultarActivaPorId(placa);
 	}
 
 }
