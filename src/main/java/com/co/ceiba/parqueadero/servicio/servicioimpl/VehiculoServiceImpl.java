@@ -1,6 +1,7 @@
 package com.co.ceiba.parqueadero.servicio.servicioimpl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class VehiculoServiceImpl implements VehiculoService {
 
 	@Autowired
 	private VehiculoService vehiculoService;
- 
+
 	@Override
 	public VehiculoDTO guardar(VehiculoDTO vehiculoDTO) {
 		new ValidarVehiculo(vehiculoService).verificar(vehiculoDTO.getPlaca());
@@ -62,8 +63,9 @@ public class VehiculoServiceImpl implements VehiculoService {
 	}
 
 	@Override
-	public List<VehiculoDTO> listar() {
-		return null;
+	public List<VehiculoDTO> listarTipo(String tipoVehiculo) {
+		List<Vehiculo> vehiculo = this.vehiculoRepository.findByTipoVehiculo(tipoVehiculo);
+		return vehiculo.stream().map(VehiculoServiceImpl::getVehiculoDTO).collect(Collectors.toList());
 	}
 
 	@Override

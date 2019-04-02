@@ -10,7 +10,7 @@ public interface VehiculoService {
 
 	VehiculoDTO consultar(Long idVehiculo);
 
-	List<VehiculoDTO> listar();
+	List<VehiculoDTO> listarTipo(String tipo);
 
 	Integer eliminar(Long idVehiculo);
 
