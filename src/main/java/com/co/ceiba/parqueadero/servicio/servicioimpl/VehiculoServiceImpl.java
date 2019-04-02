@@ -29,7 +29,7 @@ public class VehiculoServiceImpl implements VehiculoService {
 
 	@Autowired
 	private VehiculoService vehiculoService;
-
+ 
 	@Override
 	public VehiculoDTO guardar(VehiculoDTO vehiculoDTO) {
 		new ValidarVehiculo(vehiculoService).verificar(vehiculoDTO.getPlaca());

@@ -13,8 +13,8 @@ public class ValidarVehiculo {
 	public void verificar(String placa) {
 		VehiculoDTO vehiculoDTO = vehiculoService.buscarPorPlaca(placa);
 		if (vehiculoDTO != null) {
-			throw new ExisteVehiculoException(MENSAJE);
-		}
+			throw new ExisteVehiculoException(MENSAJE); 
+		} 
 	}
 	
 }

@@ -2,6 +2,7 @@ package com.co.ceiba.parqueadero.dominio;
 
 import java.time.LocalDateTime;
 
+import com.co.ceiba.parqueadero.entidad.Vehiculo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class EntradaParqueoDTO {
@@ -9,17 +10,19 @@ public class EntradaParqueoDTO {
 	private LocalDateTime fechaEntrada;
 	private Boolean activo;
 	private String tipoVehiculo;
+	private Vehiculo idVehiculo;
 
 	public EntradaParqueoDTO() {
 		super();
 	}
 
-	public EntradaParqueoDTO(Long idEntrada, LocalDateTime fechaEntrada, Boolean activo, String tipoVehiculo) {
+	public EntradaParqueoDTO(Long idEntrada, LocalDateTime fechaEntrada, Boolean activo, String tipoVehiculo,Vehiculo idVehiculo) {
 		super();
 		this.idEntrada = idEntrada;
 		this.fechaEntrada = fechaEntrada;
 		this.activo = activo;
-		this.tipoVehiculo = tipoVehiculo;
+		this.tipoVehiculo = tipoVehiculo; 
+		this.idVehiculo = idVehiculo;
 	}
 
 	public Long getIdEntrada() {
@@ -53,5 +56,12 @@ public class EntradaParqueoDTO {
 	public void setTipoVehiculo(String tipoVehiculo) {
 		this.tipoVehiculo = tipoVehiculo;
 	}
-
+	
+	public Vehiculo getIdVehiculo() {
+		return idVehiculo;
+	}
+	public void setIdVehiculo(Vehiculo idVahiculo) {
+		this.idVehiculo = idVahiculo;
+	}
+	
 }

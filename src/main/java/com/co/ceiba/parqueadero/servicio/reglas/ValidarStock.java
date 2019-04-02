@@ -2,36 +2,36 @@ package com.co.ceiba.parqueadero.servicio.reglas;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.co.ceiba.parqueadero.dominio.TipoVehiculo;
+import com.co.ceiba.parqueadero.dominio.excepcion.ParqueaderoNoDisponibleException;
 import com.co.ceiba.parqueadero.entidad.EntradaParqueo;
 import com.co.ceiba.parqueadero.servicio.EntradaParqueoService;
-@Service
-public class ValidarStock {
-	private static Integer stockCarro = 20;
-	private static Integer stockMoto = 10;
 
-	@Autowired
+public class ValidarStock {
+
+
+	public static final String MENSAJE_CARRO = "No hay disponibilidad para carros en el parqueadero";
+	public static final String MENSAJE_MOTO = "No hay disponibilidad para motos en el parqueadero";
+
 	private EntradaParqueoService entradaParqueoService;
 
-	public Boolean validarStock(String tipoVehiculo) {
-		Boolean disponible = false;
-		if (tipoVehiculo.equals(TipoVehiculo.CARRO.toString())) {
+	public ValidarStock(EntradaParqueoService entradaParqueoService) {
+		this.entradaParqueoService = entradaParqueoService;
+	} 
 
+	public void validarStock(String tipoVehiculo,Integer stock) { 
+		if (tipoVehiculo.equals(TipoVehiculo.CARRO.toString())) {
 			List<EntradaParqueo> cantCarroActiva = entradaParqueoService.listarActivas(tipoVehiculo);
-			if (cantCarroActiva.size() < stockCarro) {
-				disponible = true;
+			if (cantCarroActiva.size() >= stock) {
+				throw new ParqueaderoNoDisponibleException(MENSAJE_CARRO);
 			}
 		} else if (tipoVehiculo.equals(TipoVehiculo.MOTO.toString())) {
 			List<EntradaParqueo> cantMotoActiva = entradaParqueoService.listarActivas(tipoVehiculo);
-			if (cantMotoActiva.size() < stockMoto) {
-				disponible = true;
-			}
+			if (cantMotoActiva.size() >= stock) {
+				throw new ParqueaderoNoDisponibleException(MENSAJE_MOTO); 
+			} 
 
 		}
-		return disponible;
 
 	}
 }
