@@ -23,7 +23,7 @@ public class VehiculoController {
 
 	@PostMapping("/carro")
 	public VehiculoDTO guardarCarro(@RequestBody CarroDTO carroDTO) {
-		return vehiculoService.guardar(carroDTO);
+		return vehiculoService.guardar(carroDTO); 
 	}
 //	
 	@PostMapping("/moto")

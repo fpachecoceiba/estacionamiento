@@ -24,7 +24,7 @@ public class ValidarVehiculoTest {
 		when(vehiculoService.buscarPorPlaca(PLACA)).thenReturn(vehiculoDTO);
 		try {
 			validarVehiculo.verificar(PLACA);
-		} catch (ExisteVehiculoException e) {
+		} catch (ExisteVehiculoException e) { 
 			assertEquals(e.getMessage(), ValidarVehiculo.MENSAJE);   
 		} 
 		 

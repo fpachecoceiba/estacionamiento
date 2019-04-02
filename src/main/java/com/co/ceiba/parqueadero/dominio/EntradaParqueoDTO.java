@@ -9,20 +9,18 @@ public class EntradaParqueoDTO {
 	private Long idEntrada;
 	private LocalDateTime fechaEntrada;
 	private Boolean activo;
-	private String tipoVehiculo;
 	private Vehiculo idVehiculo;
 
 	public EntradaParqueoDTO() {
 		super();
 	}
 
-	public EntradaParqueoDTO(Long idEntrada, LocalDateTime fechaEntrada, Boolean activo, String tipoVehiculo,Vehiculo idVehiculo) {
+	public EntradaParqueoDTO(Long idEntrada, LocalDateTime fechaEntrada, Boolean activo,Vehiculo idVehiculo) {
 		super();
 		this.idEntrada = idEntrada;
 		this.fechaEntrada = fechaEntrada;
 		this.activo = activo;
-		this.tipoVehiculo = tipoVehiculo; 
-		this.idVehiculo = idVehiculo;
+		this.idVehiculo = idVehiculo; 
 	}
 
 	public Long getIdEntrada() {
@@ -47,14 +45,6 @@ public class EntradaParqueoDTO {
 
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
-	}
-
-	public String getTipoVehiculo() {
-		return tipoVehiculo;
-	}
-
-	public void setTipoVehiculo(String tipoVehiculo) {
-		this.tipoVehiculo = tipoVehiculo;
 	}
 	
 	public Vehiculo getIdVehiculo() {

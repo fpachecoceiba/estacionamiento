@@ -17,7 +17,7 @@ public class ValidarStock {
 
 	public ValidarStock(EntradaParqueoService entradaParqueoService) {
 		this.entradaParqueoService = entradaParqueoService;
-	} 
+	}  
 
 	public void validarStock(String tipoVehiculo,Integer stock) { 
 		if (tipoVehiculo.equals(TipoVehiculo.CARRO.toString())) {
