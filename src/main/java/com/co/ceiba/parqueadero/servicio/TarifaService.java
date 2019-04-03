@@ -1,7 +1,7 @@
 package com.co.ceiba.parqueadero.servicio;
 
-import com.co.ceiba.parqueadero.entidad.Tarifa;
+import com.co.ceiba.parqueadero.dominio.TarifaDTO;
 
 public interface TarifaService {
-	Tarifa consultarTarifa(String modalidad, String tipoVehiculo);
+	TarifaDTO consultarTarifa(String modalidad, String tipoVehiculo);
 }

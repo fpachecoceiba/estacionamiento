@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,40 +32,39 @@ public class EntradaParqueoServiceImpl implements EntradaParqueoService {
 	private EntradaParqueoRepository entradaParqueoRepository;
 	@Autowired
 	private VehiculoRepository vehiculoRepository;
-	@Autowired
-	private EntradaParqueoService entradaParqueoService;
 
 	@Override
 	public EntradaParqueoDTO registrar(VehiculoDTO vehiculoDTO) {
+			Optional<Vehiculo> optVehiculo = vehiculoRepository.findById(vehiculoDTO.getIdVehiculo());
+			if (optVehiculo.isPresent()) {
+				String tipoVehiculo = optVehiculo.get().getTipoVehiculo();
+				String placa = optVehiculo.get().getPlaca();
+				new ValidarStock(this).validarStock(tipoVehiculo, getStock(optVehiculo.get().getTipoVehiculo()));
 
-		Optional<Vehiculo> optVehiculo = vehiculoRepository.findById(vehiculoDTO.getIdVehiculo());
-		String tipoVehiculo = optVehiculo.get().getTipoVehiculo();
-		String placa = optVehiculo.get().getPlaca();
+				if (!new ValidarEntradaParqueadero(this).ingresoValidoSegunDiaPlaca(placa, fechaEntrada)) {
+					throw new ParqueaderoNoDisponibleException(ValidarEntradaParqueadero.MENSAJE);
+				}
 
-		new ValidarStock(entradaParqueoService).validarStock(tipoVehiculo,
-				getStock(optVehiculo.get().getTipoVehiculo()));
+				if (new ValidarEntradaParqueadero(this).existeEntradaRegistrada(placa)) {
+					throw new ParqueaderoNoDisponibleException(ValidarEntradaParqueadero.MENSAJE_EXISTE);
+				}
 
-		if (!new ValidarEntradaParqueadero(entradaParqueoService).ingresoValidoSegunDiaPlaca(placa, fechaEntrada)) {
-			throw new ParqueaderoNoDisponibleException(ValidarEntradaParqueadero.MENSAJE);
-		}
-
-		if (new ValidarEntradaParqueadero(entradaParqueoService).existeEntradaRegistrada(placa)) {
-			throw new ParqueaderoNoDisponibleException(ValidarEntradaParqueadero.MENSAJE_EXISTE);
-		}
-
-		EntradaParqueoDTO entradaParqueoDTO = new EntradaParqueoDTO();
-		entradaParqueoDTO.setActivo(true);
-		entradaParqueoDTO.setFechaEntrada(fechaEntrada);
-		entradaParqueoDTO.setIdVehiculo(optVehiculo.get());
-		EntradaParqueo entradaParqueo = getEntidad(entradaParqueoDTO);
-		entradaParqueoRepository.save(entradaParqueo);
-		return getDTO(entradaParqueo);
-
+				EntradaParqueoDTO entradaParqueoDTO = new EntradaParqueoDTO();
+				entradaParqueoDTO.setActivo(true);
+				entradaParqueoDTO.setFechaEntrada(fechaEntrada);
+				entradaParqueoDTO.setIdVehiculo(optVehiculo.get());
+				EntradaParqueo entradaParqueo = getEntidad(entradaParqueoDTO);
+				entradaParqueoRepository.save(entradaParqueo);
+				return getDTO(entradaParqueo);
+			}
+		return null;
 	}
 
 	@Override
-	public List<EntradaParqueo> listarActivas(String tipo) {
-		return entradaParqueoRepository.listaActivas(tipo);
+	public List<EntradaParqueoDTO> listarActivas(String tipo) {
+		return entradaParqueoRepository.listaActivas(tipo).stream().map(EntradaParqueoServiceImpl::getDTO)
+				.collect(Collectors.toList());
+
 	}
 
 	public static EntradaParqueoDTO getDTO(EntradaParqueo entradaParqueo) {
@@ -88,8 +88,14 @@ public class EntradaParqueoServiceImpl implements EntradaParqueoService {
 	}
 
 	@Override
-	public EntradaParqueo consultarActivaPorId(String placa) {
-		return entradaParqueoRepository.consultarActivaPorId(placa);
+	public EntradaParqueoDTO consultarActivaPorId(String placa) {
+		EntradaParqueo entradaParqueo = this.entradaParqueoRepository.consultarActivaPorId(placa);
+		if (entradaParqueo != null) {
+			return getDTO(entradaParqueo);
+		} else {
+			return null;
+		}
+
 	}
 
 }

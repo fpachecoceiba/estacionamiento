@@ -64,8 +64,9 @@ public class VehiculoServiceImpl implements VehiculoService {
 
 	@Override
 	public List<VehiculoDTO> listarTipo(String tipoVehiculo) {
-		List<Vehiculo> vehiculo = this.vehiculoRepository.findByTipoVehiculo(tipoVehiculo);
-		return vehiculo.stream().map(VehiculoServiceImpl::getVehiculoDTO).collect(Collectors.toList());
+
+		return vehiculoRepository.findByTipoVehiculo(tipoVehiculo).stream()
+				.map(VehiculoServiceImpl::getVehiculoDTO).collect(Collectors.toList());
 	}
 
 	@Override
@@ -76,7 +77,7 @@ public class VehiculoServiceImpl implements VehiculoService {
 	@Override
 	public VehiculoDTO buscarPorPlaca(String placa) {
 		Vehiculo vehiculo = this.vehiculoRepository.findByPlaca(placa);
-		if (vehiculo != null) { 
+		if (vehiculo != null) {
 			return getVehiculoDTO(vehiculo);
 		} else {
 			return null;

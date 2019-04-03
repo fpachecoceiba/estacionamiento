@@ -22,7 +22,7 @@ public class VehiculoController {
 	private VehiculoService vehiculoService;
 
 	@PostMapping("/carro")
-	public VehiculoDTO guardarCarro(@RequestBody CarroDTO carroDTO) {
+	public VehiculoDTO guardarCarro(@RequestBody CarroDTO carroDTO) { 
 		return vehiculoService.guardar(carroDTO);
 	}
 

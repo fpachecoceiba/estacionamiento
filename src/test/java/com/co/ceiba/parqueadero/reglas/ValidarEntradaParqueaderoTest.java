@@ -35,6 +35,6 @@ public class ValidarEntradaParqueaderoTest {
 		boolean valida = validarEntradaParqueadero.ingresoValidoSegunDiaPlaca(PLACA_VALIDA, fechaEntrada);
 		assertEquals(valida, true);
 
-	} 
+	}
 
 }

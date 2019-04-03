@@ -11,10 +11,10 @@ import com.co.ceiba.parqueadero.entidad.EntradaParqueo;
 
 public interface EntradaParqueoRepository
 		extends JpaRepository<EntradaParqueo, Long>, JpaSpecificationExecutor<EntradaParqueo> {
-	
-	  @Query(value = "SELECT ent FROM entrada_parqueo ent WHERE ent.tipoVehiculo = :tipoVehiculo AND ent.activo = true")
-	  List<EntradaParqueo> listaActivas(@Param(value = "tipoVehiculo")  String tipoVehiculo);
-	  
-	  @Query(value = "SELECT ent FROM entrada_parqueo ent WHERE ent.idVehiculo.placa = :placa AND ent.activo = true")
-	  EntradaParqueo consultarActivaPorId(@Param(value = "placa")  String placa);
+
+	@Query(value = "SELECT ent FROM entrada_parqueo ent WHERE ent.tipoVehiculo = :tipoVehiculo AND ent.activo = true")
+	public List<EntradaParqueo> listaActivas(@Param(value = "tipoVehiculo") String tipoVehiculo);
+
+	@Query(value = "SELECT ent FROM entrada_parqueo ent WHERE ent.idVehiculo.placa = :placa AND ent.activo = true")
+	public EntradaParqueo consultarActivaPorId(@Param(value = "placa") String placa);
 }

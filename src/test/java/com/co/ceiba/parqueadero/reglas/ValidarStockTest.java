@@ -9,8 +9,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.co.ceiba.parqueadero.dominio.EntradaParqueoDTO;
 import com.co.ceiba.parqueadero.dominio.excepcion.ParqueaderoNoDisponibleException;
-import com.co.ceiba.parqueadero.entidad.EntradaParqueo;
 import com.co.ceiba.parqueadero.servicio.EntradaParqueoService;
 import com.co.ceiba.parqueadero.servicio.reglas.ValidarStock;
 
@@ -31,7 +31,7 @@ public class ValidarStockTest {
 		EntradaParqueoService entradaParqueoService = mock(EntradaParqueoService.class);
 		ValidarStock validarStock = new ValidarStock(entradaParqueoService);
 
-		List<EntradaParqueo> listaActivas = new ArrayList<>(); 
+		List<EntradaParqueoDTO> listaActivas = new ArrayList<>();  
 		when(entradaParqueoService.listarActivas(TIPO_CARRO)).thenReturn(listaActivas);
 
 		try {
@@ -46,7 +46,7 @@ public class ValidarStockTest {
 		EntradaParqueoService entradaParqueoService = mock(EntradaParqueoService.class);
 		ValidarStock validarStock = new ValidarStock(entradaParqueoService);
 
-		List<EntradaParqueo> listaActivas = new ArrayList<>(); 
+		List<EntradaParqueoDTO> listaActivas = new ArrayList<>(); 
 		when(entradaParqueoService.listarActivas(TIPO_MOTO)).thenReturn(listaActivas);
 
 		try {
@@ -62,7 +62,7 @@ public class ValidarStockTest {
 		EntradaParqueoService entradaParqueoService = mock(EntradaParqueoService.class);
 		ValidarStock validarStock = new ValidarStock(entradaParqueoService);
 
-		List<EntradaParqueo> listaActivas = new ArrayList<>(); 
+		List<EntradaParqueoDTO> listaActivas = new ArrayList<>(); 
 		when(entradaParqueoService.listarActivas(TIPO_CARRO)).thenReturn(listaActivas);
 
 		try {
@@ -78,7 +78,7 @@ public class ValidarStockTest {
 		EntradaParqueoService entradaParqueoService = mock(EntradaParqueoService.class);
 		ValidarStock validarStock = new ValidarStock(entradaParqueoService);
 
-		List<EntradaParqueo> listaActivas = new ArrayList<>(); 
+		List<EntradaParqueoDTO> listaActivas = new ArrayList<>(); 
 		when(entradaParqueoService.listarActivas(TIPO_MOTO)).thenReturn(listaActivas);
 
 		try {
