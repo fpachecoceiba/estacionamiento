@@ -33,7 +33,7 @@ public class EntradaParqueoServiceImpl implements EntradaParqueoService {
 	@Autowired
 	private VehiculoRepository vehiculoRepository;
 
-	@Override
+	@Override 
 	public EntradaParqueoDTO registrar(VehiculoDTO vehiculoDTO) {
 			Optional<Vehiculo> optVehiculo = vehiculoRepository.findById(vehiculoDTO.getIdVehiculo());
 			if (optVehiculo.isPresent()) {

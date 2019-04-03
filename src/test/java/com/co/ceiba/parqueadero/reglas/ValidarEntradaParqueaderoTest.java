@@ -29,7 +29,7 @@ public class ValidarEntradaParqueaderoTest {
 	}
 	
 	@Test
-	public void validarEntradaValida() {
+	public void validarEntradaValida() { 
 		EntradaParqueoService entradaParqueoService = mock(EntradaParqueoService.class);
 		ValidarEntradaParqueadero validarEntradaParqueadero = new ValidarEntradaParqueadero(entradaParqueoService);
 		boolean valida = validarEntradaParqueadero.ingresoValidoSegunDiaPlaca(PLACA_VALIDA, fechaEntrada);

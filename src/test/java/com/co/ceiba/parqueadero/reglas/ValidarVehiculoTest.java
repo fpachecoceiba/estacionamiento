@@ -28,7 +28,7 @@ public class ValidarVehiculoTest {
 			assertEquals(e.getMessage(), ValidarVehiculo.MENSAJE);   
 		} 
 		  
-	}
+	} 
 	
 	@Test
 	public void validarVehiculoCarronNull() {
