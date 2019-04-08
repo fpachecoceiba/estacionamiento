@@ -1,4 +1,4 @@
-package com.co.ceiba.parqueadero.repositorio.repositorioImpl;
+package com.co.ceiba.parqueadero.repositorio.repositorioimpl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

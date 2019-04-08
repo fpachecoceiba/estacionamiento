@@ -1,4 +1,4 @@
-package com.co.ceiba.parqueadero.repositorio.repositorioImpl;
+package com.co.ceiba.parqueadero.repositorio.repositorioimpl;
 
 import java.util.List;
 import java.util.stream.Collectors;

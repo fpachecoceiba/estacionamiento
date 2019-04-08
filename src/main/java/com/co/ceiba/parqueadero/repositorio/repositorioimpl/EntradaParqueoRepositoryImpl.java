@@ -1,4 +1,4 @@
-package com.co.ceiba.parqueadero.repositorio.repositorioImpl;
+package com.co.ceiba.parqueadero.repositorio.repositorioimpl;
 
 import java.sql.Timestamp;
 import java.util.List;

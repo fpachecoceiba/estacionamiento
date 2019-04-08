@@ -3,10 +3,7 @@ package com.co.ceiba.parqueadero.servicio.reglas;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
-
-import org.springframework.stereotype.Service;
 
 import com.co.ceiba.parqueadero.dominio.TipoCobro;
 import com.co.ceiba.parqueadero.dominio.TipoVehiculo;
@@ -20,14 +17,8 @@ public class CalcularTarifaSalida {
 	public static final Double CILINDRAJE_MAX = 500.0; 
 	public static final Double VALOR_EXCEDENTE = 2000.0;
 
-	private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-	private static String stringFecha = "2019-04-04 01:00:00";
-	private static LocalDateTime toDateTime = LocalDateTime.parse(stringFecha, formatter);
-
-	private static String stringfromDateTime = "2019-04-05 04:00:00";
-	private static LocalDateTime fromDateTime = LocalDateTime.parse(stringfromDateTime, formatter);
-
+	
 	private TarifaRepository tarifaRepository;
 
 	public CalcularTarifaSalida(TarifaRepository tarifaRepository) {
