@@ -8,12 +8,9 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.co.ceiba.parqueadero.builder.CarroBuilder;
 import com.co.ceiba.parqueadero.builder.TarifaBuilder;
-import com.co.ceiba.parqueadero.dominio.CarroDTO;
 import com.co.ceiba.parqueadero.dominio.TarifaDTO;
 import com.co.ceiba.parqueadero.dominio.TipoVehiculo;
-import com.co.ceiba.parqueadero.entidad.Carro;
 import com.co.ceiba.parqueadero.entidad.Tarifa;
 
 @RunWith(SpringRunner.class)
