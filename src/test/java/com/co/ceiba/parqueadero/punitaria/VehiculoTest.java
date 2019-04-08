@@ -93,6 +93,9 @@ public class VehiculoTest {
 		assertEquals(listaVehiculo.size(), 1);
 
 	}
+	
+	
+	
 
 	@Test
 	public void carroBuilderEntidad() {

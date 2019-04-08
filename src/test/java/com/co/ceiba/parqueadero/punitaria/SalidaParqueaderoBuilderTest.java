@@ -11,14 +11,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.co.ceiba.parqueadero.builder.EntradaParqueaderoBuilder;
-import com.co.ceiba.parqueadero.builder.MotoBuilder;
 import com.co.ceiba.parqueadero.builder.SalidaParqueaderoBuilder;
 import com.co.ceiba.parqueadero.dominio.EntradaParqueoDTO;
-import com.co.ceiba.parqueadero.dominio.MotoDTO;
 import com.co.ceiba.parqueadero.dominio.SalidaParqueaderoDTO;
 import com.co.ceiba.parqueadero.dominio.TipoVehiculo;
-import com.co.ceiba.parqueadero.entidad.EntradaParqueo;
-import com.co.ceiba.parqueadero.entidad.Moto;
 import com.co.ceiba.parqueadero.entidad.SalidaParqueadero;
 import com.co.ceiba.parqueadero.entidad.Vehiculo;
 
