@@ -1,4 +1,6 @@
-package builder;
+package com.co.ceiba.parqueadero.builder;
+
+
 
 import java.sql.Timestamp;
 

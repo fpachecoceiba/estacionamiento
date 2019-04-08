@@ -1,9 +1,11 @@
 package com.co.ceiba.parqueadero.servicio;
-
+ 
 import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Service;
 
+import com.co.ceiba.parqueadero.builder.CarroBuilder;
+import com.co.ceiba.parqueadero.builder.MotoBuilder;
 import com.co.ceiba.parqueadero.dominio.CarroDTO;
 import com.co.ceiba.parqueadero.dominio.EntradaParqueoDTO;
 import com.co.ceiba.parqueadero.dominio.MotoDTO;
@@ -17,8 +19,6 @@ import com.co.ceiba.parqueadero.repositorio.VehiculoRepository;
 import com.co.ceiba.parqueadero.servicio.reglas.ValidarEntradaParqueadero;
 import com.co.ceiba.parqueadero.servicio.reglas.ValidarStock;
 
-import builder.CarroBuilder;
-import builder.MotoBuilder;
 
 @Service
 public class EntradaParqueoService {

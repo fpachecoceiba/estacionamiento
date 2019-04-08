@@ -11,13 +11,13 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
+import com.co.ceiba.parqueadero.builder.EntradaParqueaderoBuilder;
 import com.co.ceiba.parqueadero.dominio.EntradaParqueoDTO;
 import com.co.ceiba.parqueadero.entidad.Carro;
 import com.co.ceiba.parqueadero.entidad.EntradaParqueo;
 import com.co.ceiba.parqueadero.entidad.Moto;
 import com.co.ceiba.parqueadero.repositorio.EntradaParqueoRepository;
 
-import builder.EntradaParqueaderoBuilder;
 
 @Transactional
 @Repository

@@ -10,6 +10,9 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
+import com.co.ceiba.parqueadero.builder.CarroBuilder;
+import com.co.ceiba.parqueadero.builder.MotoBuilder;
+import com.co.ceiba.parqueadero.builder.VehiculoBuilder;
 import com.co.ceiba.parqueadero.dominio.CarroDTO;
 import com.co.ceiba.parqueadero.dominio.MotoDTO;
 import com.co.ceiba.parqueadero.dominio.VehiculoDTO;
@@ -18,9 +21,7 @@ import com.co.ceiba.parqueadero.entidad.Moto;
 import com.co.ceiba.parqueadero.entidad.Vehiculo;
 import com.co.ceiba.parqueadero.repositorio.VehiculoRepository;
 
-import builder.CarroBuilder;
-import builder.MotoBuilder;
-import builder.VehiculoBuilder;
+
 
 @Transactional
 @Repository

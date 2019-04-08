@@ -10,11 +10,11 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
+import com.co.ceiba.parqueadero.builder.TarifaBuilder;
 import com.co.ceiba.parqueadero.dominio.TarifaDTO;
 import com.co.ceiba.parqueadero.entidad.Tarifa;
 import com.co.ceiba.parqueadero.repositorio.TarifaRepository;
 
-import builder.TarifaBuilder;
 
 @Transactional
 @Repository

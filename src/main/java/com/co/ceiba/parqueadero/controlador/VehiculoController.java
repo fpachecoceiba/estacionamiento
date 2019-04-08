@@ -30,20 +30,11 @@ public class VehiculoController {
 		return vehiculoService.guardar(carroDTO);
 	}
 
-	@CrossOrigin
+
 	@PostMapping("/moto")
 	public VehiculoDTO guardarMoto(@RequestBody MotoDTO motoDTO) {
 		return vehiculoService.guardar(motoDTO);
 	}
 
-//	@GetMapping("/listarTipo")
-//	public List<VehiculoDTO> listar(@RequestParam String tipoVehiculo) {
-//		return vehiculoService.listarTipo(tipoVehiculo);
-//	}
-//
-//	@GetMapping("/listarPlaca")
-//	public VehiculoDTO listarPlaca(@RequestParam String placa) {
-//		return vehiculoService.buscarPorPlaca(placa);
-//	}
 
 }

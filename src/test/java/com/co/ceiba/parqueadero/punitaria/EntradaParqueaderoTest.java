@@ -12,6 +12,8 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.co.ceiba.parqueadero.builder.CarroBuilder;
+import com.co.ceiba.parqueadero.builder.MotoBuilder;
 import com.co.ceiba.parqueadero.dominio.CarroDTO;
 import com.co.ceiba.parqueadero.dominio.EntradaParqueoDTO;
 import com.co.ceiba.parqueadero.dominio.MotoDTO;
@@ -23,8 +25,6 @@ import com.co.ceiba.parqueadero.repositorio.MotoRepository;
 import com.co.ceiba.parqueadero.repositorio.VehiculoRepository;
 import com.co.ceiba.parqueadero.servicio.EntradaParqueoService;
 
-import builder.CarroBuilder;
-import builder.MotoBuilder;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest

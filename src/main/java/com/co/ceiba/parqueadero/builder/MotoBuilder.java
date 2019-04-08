@@ -1,4 +1,6 @@
-package builder;
+package com.co.ceiba.parqueadero.builder;
+
+
 
 import com.co.ceiba.parqueadero.dominio.MotoDTO;
 import com.co.ceiba.parqueadero.dominio.TipoVehiculo;

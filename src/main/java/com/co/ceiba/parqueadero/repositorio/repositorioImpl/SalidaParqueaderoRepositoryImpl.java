@@ -6,11 +6,11 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
+import com.co.ceiba.parqueadero.builder.SalidaParqueaderoBuilder;
 import com.co.ceiba.parqueadero.dominio.SalidaParqueaderoDTO;
 import com.co.ceiba.parqueadero.entidad.SalidaParqueadero;
 import com.co.ceiba.parqueadero.repositorio.SalidaParqueaderoRepository;
 
-import builder.SalidaParqueaderoBuilder;
 
 @Transactional
 @Repository
