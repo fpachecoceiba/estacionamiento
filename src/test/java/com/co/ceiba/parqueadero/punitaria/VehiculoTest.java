@@ -17,8 +17,11 @@ import com.co.ceiba.parqueadero.dominio.CarroDTO;
 import com.co.ceiba.parqueadero.dominio.MotoDTO;
 import com.co.ceiba.parqueadero.dominio.TipoVehiculo;
 import com.co.ceiba.parqueadero.dominio.VehiculoDTO;
+import com.co.ceiba.parqueadero.entidad.Carro;
 import com.co.ceiba.parqueadero.repositorio.VehiculoRepository;
 import com.co.ceiba.parqueadero.servicio.VehiculoService;
+
+import builder.CarroBuilder;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -36,7 +39,7 @@ public class VehiculoTest {
 		assertEquals(TipoVehiculo.CARRO.toString(), carroDTO.getTipoVehiculo());
 		assertEquals(ID_VEHICULO, carroDTO.getIdVehiculo());
  
-	}
+	} 
 
 	@Test 
 	public void guardarVehiculoMoto() {
@@ -89,5 +92,34 @@ public class VehiculoTest {
 	
 
 	}
+	
+	@Test 
+	public void carroBuilderEntidad() {  
+		CarroDTO carroDTO= new CarroDTO(MODELO, ID_VEHICULO, PLACA, TipoVehiculo.CARRO.toString());
+		Carro carro = CarroBuilder.getCarroEntidad(carroDTO);
+		assertEquals(PLACA, carro.getPlaca());
+		assertEquals(MODELO, carro.getModelo());
+		assertEquals(TipoVehiculo.CARRO.toString(), carro.getTipoVehiculo());
+		assertEquals(ID_VEHICULO, carro.getIdVehiculo());
+ 
+	} 
+	
+	@Test 
+	public void carroBuilderDTO() {  
+		Carro carro = new Carro();
+		carro.setIdVehiculo(ID_VEHICULO);
+		carro.setModelo(MODELO);
+		carro.setPlaca(PLACA);
+		carro.setTipoVehiculo(TipoVehiculo.CARRO.toString());
+		
+		CarroDTO carroDTO= CarroBuilder.getCarroDTO(carro);
+	
+		assertEquals(PLACA, carroDTO.getPlaca());
+		assertEquals(MODELO, carroDTO.getModelo());
+		assertEquals(TipoVehiculo.CARRO.toString(), carroDTO.getTipoVehiculo());
+		assertEquals(ID_VEHICULO, carroDTO.getIdVehiculo());
+ 
+	} 
+
 
 }
