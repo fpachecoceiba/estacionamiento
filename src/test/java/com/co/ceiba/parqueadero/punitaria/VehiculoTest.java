@@ -1,6 +1,7 @@
 package com.co.ceiba.parqueadero.punitaria;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -119,7 +120,30 @@ public class VehiculoTest {
 		assertEquals(TipoVehiculo.CARRO.toString(), carroDTO.getTipoVehiculo());
 		assertEquals(ID_VEHICULO, carroDTO.getIdVehiculo());
  
-	} 
+	}  
+	
+	
+	@Test 
+	public void carroBuilderDTONull() {  
+		Carro carro =null;
+		
+		CarroDTO carroDTO= CarroBuilder.getCarroDTO(carro);
+	
+		assertNull(carroDTO);
+		
+	}  
+	
+	@Test
+	public void carroBuilderEntidadNull() {  
+		CarroDTO carroDTO =null;
+		
+		Carro carro= CarroBuilder.getCarroEntidad(carroDTO);
+	
+		assertNull(carro);
+		
+	}  
+
+
 
 
 }
