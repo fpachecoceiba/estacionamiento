@@ -2,6 +2,9 @@ package com.co.ceiba.parqueadero.pintegracion;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
@@ -9,11 +12,12 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.co.ceiba.parqueadero.dominio.CarroDTO;
 //
-//@RunWith(SpringRunner.class)
-//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class VehiculoControllerTest {
 	@LocalServerPort
 	private int puerto;
@@ -24,14 +28,14 @@ public class VehiculoControllerTest {
 	TestRestTemplate testRestTemplate = new TestRestTemplate();
 	HttpHeaders httpHeaders = new HttpHeaders();
 
-	//@Test 
+	@Test 
 	public void registrarVehiculoTest() {
 		CarroDTO carroDTO = new CarroDTO("2017", 1l, "pl000", "CARRO");
 		HttpEntity<CarroDTO> entity = new HttpEntity<>(carroDTO, httpHeaders);
 		ResponseEntity<String> response = testRestTemplate.exchange(getUrl(URL_CARRO), HttpMethod.POST,
 				entity, String.class);
 		HttpStatus codigo = response.getStatusCode();
-		assertEquals(HttpStatus.OK, codigo);
+		assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, codigo);
 
 	}
 	

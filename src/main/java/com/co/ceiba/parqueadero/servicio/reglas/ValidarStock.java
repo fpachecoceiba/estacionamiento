@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.co.ceiba.parqueadero.dominio.EntradaParqueoDTO;
 import com.co.ceiba.parqueadero.dominio.TipoVehiculo;
-import com.co.ceiba.parqueadero.dominio.excepcion.ParqueaderoNoDisponibleException;
 import com.co.ceiba.parqueadero.repositorio.EntradaParqueoRepository;
 
 public class ValidarStock {

@@ -52,7 +52,7 @@ public class VehiculoTest {
 		assertEquals(ID_VEHICULO, motoDTO.getIdVehiculo());
 
 	}
-
+ 
 	@Test
 	public void registrarVehiculoCarro() {
 		VehiculoRepository vehiculoRepository = mock(VehiculoRepository.class);
