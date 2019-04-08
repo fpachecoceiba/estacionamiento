@@ -4,90 +4,61 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 
 import org.junit.Test;
 
 import com.co.ceiba.parqueadero.dominio.EntradaParqueoDTO;
-import com.co.ceiba.parqueadero.dominio.excepcion.ParqueaderoNoDisponibleException;
-import com.co.ceiba.parqueadero.servicio.EntradaParqueoService;
+import com.co.ceiba.parqueadero.entidad.Vehiculo;
+import com.co.ceiba.parqueadero.repositorio.EntradaParqueoRepository;
 import com.co.ceiba.parqueadero.servicio.reglas.ValidarStock;
 
 public class ValidarStockTest {
 	private static final String TIPO_CARRO = "CARRO";
 	private static final String TIPO_MOTO = "MOTO";
+
+	private static final Integer STOCK_CARRO_TRUE = 20;
+	private static final Integer STOCK_CARRO_FALSE = 0;
 	
-	private static final Integer STOCK_CARRO = 2;
-	private static final Integer STOCK_MOTO = 3;
-	
-	private static final Integer STOCK_CARRO_NO_DISPONIBLE = 0;
-	private static final Integer STOCK_MOTO_NO_DISPONIBLE = 0;
-	  
-	 
+	private static final Integer STOCK_MOTO_TRUE = 10;
+	private static final Integer STOCK_MOTO_FALSE = 0;
+
+
+	private String stringFecha = "2019-04-03 11:44:44";
+	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	private LocalDateTime fechaEntrada = LocalDateTime.parse(stringFecha, formatter);
+
 
 	@Test
-	public void validarStockCarroOK() {
-		EntradaParqueoService entradaParqueoService = mock(EntradaParqueoService.class);
-		ValidarStock validarStock = new ValidarStock(entradaParqueoService);
+	public void validarStockCarro() {
+		EntradaParqueoRepository entradaParqueoRepository = mock(EntradaParqueoRepository.class);
+		ValidarStock validarStock = new ValidarStock(entradaParqueoRepository);
+		EntradaParqueoDTO entradaParqueoDTO = null;
 
-		List<EntradaParqueoDTO> listaActivas = new ArrayList<>();  
-		when(entradaParqueoService.listarActivas(TIPO_CARRO)).thenReturn(listaActivas);
-
-		try {
-			validarStock.validarStock(TIPO_CARRO,STOCK_CARRO); 
-		} catch (ParqueaderoNoDisponibleException e) {
-			assertEquals(e.getMessage(), ValidarStock.MENSAJE_CARRO); 
-		}
+		when(entradaParqueoRepository.listaActivas(TIPO_CARRO))
+				.thenReturn(Arrays.asList(entradaParqueoDTO));
+		
+		assertEquals(validarStock.validarStock(TIPO_CARRO, STOCK_CARRO_TRUE), true);
+		assertEquals(validarStock.validarStock(TIPO_CARRO, STOCK_CARRO_FALSE), false);
+ 
 	}
 	
 	@Test
-	public void validarStockMotoOK() {
-		EntradaParqueoService entradaParqueoService = mock(EntradaParqueoService.class);
-		ValidarStock validarStock = new ValidarStock(entradaParqueoService);
+	public void validarStockMoto() {
+		EntradaParqueoRepository entradaParqueoRepository = mock(EntradaParqueoRepository.class);
+		ValidarStock validarStock = new ValidarStock(entradaParqueoRepository);
+		Vehiculo vehiculo = null;
 
-		List<EntradaParqueoDTO> listaActivas = new ArrayList<>(); 
-		when(entradaParqueoService.listarActivas(TIPO_MOTO)).thenReturn(listaActivas);
+		when(entradaParqueoRepository.listaActivas(TIPO_MOTO))
+				.thenReturn(Arrays.asList(new EntradaParqueoDTO(1l, fechaEntrada, true, vehiculo)));
+		
+		assertEquals(validarStock.validarStock(TIPO_MOTO, STOCK_MOTO_TRUE), true);
+		assertEquals(validarStock.validarStock(TIPO_MOTO, STOCK_MOTO_FALSE), false);
 
-		try {
-			validarStock.validarStock(TIPO_MOTO,STOCK_MOTO);
-		} catch (ParqueaderoNoDisponibleException e) {
-			assertEquals(e.getMessage(), ValidarStock.MENSAJE_MOTO); 
-		}
 	}
 	
 	
-	@Test
-	public void validarStockCarroNodisponible() {
-		EntradaParqueoService entradaParqueoService = mock(EntradaParqueoService.class);
-		ValidarStock validarStock = new ValidarStock(entradaParqueoService);
-
-		List<EntradaParqueoDTO> listaActivas = new ArrayList<>(); 
-		when(entradaParqueoService.listarActivas(TIPO_CARRO)).thenReturn(listaActivas);
-
-		try {
-			validarStock.validarStock(TIPO_CARRO,STOCK_CARRO_NO_DISPONIBLE); 
-		} catch (ParqueaderoNoDisponibleException e) {
-			assertEquals(e.getMessage(), ValidarStock.MENSAJE_CARRO);  
-		}
-	}
-	
-	
-	@Test
-	public void validarStockMotoNodisponible() {
-		EntradaParqueoService entradaParqueoService = mock(EntradaParqueoService.class);
-		ValidarStock validarStock = new ValidarStock(entradaParqueoService);
-
-		List<EntradaParqueoDTO> listaActivas = new ArrayList<>(); 
-		when(entradaParqueoService.listarActivas(TIPO_MOTO)).thenReturn(listaActivas);
-
-		try {
-			validarStock.validarStock(TIPO_MOTO,STOCK_MOTO_NO_DISPONIBLE); 
-		} catch (ParqueaderoNoDisponibleException e) {
-			assertEquals(e.getMessage(), ValidarStock.MENSAJE_MOTO);  
-		}
-	}
-
-
 
 }

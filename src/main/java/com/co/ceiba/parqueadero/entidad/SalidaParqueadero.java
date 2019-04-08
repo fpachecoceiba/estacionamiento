@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,11 +24,11 @@ public class SalidaParqueadero {
 	@Column(name = "fechaSalida", nullable = false)
 	private LocalDateTime fechaSalida;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_entrada_parqueo")
 	private EntradaParqueo entradaParqueo;
 
-	@Column(name = "modelo", nullable = false)
+	@Column(name = "valor", nullable = false)
 	private Double valor;
 
 	public SalidaParqueadero() {
@@ -64,7 +65,7 @@ public class SalidaParqueadero {
 	}
 
 	public void setEntradaParqueo(EntradaParqueo entradaParqueo) {
-		this.entradaParqueo = entradaParqueo;
+		this.entradaParqueo = entradaParqueo; 
 	}
 
 	public Double getValor() {

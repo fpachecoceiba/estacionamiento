@@ -1,45 +1,92 @@
 package com.co.ceiba.parqueadero.punitaria;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.co.ceiba.parqueadero.dominio.CarroDTO;
 import com.co.ceiba.parqueadero.dominio.MotoDTO;
 import com.co.ceiba.parqueadero.dominio.TipoVehiculo;
+import com.co.ceiba.parqueadero.dominio.VehiculoDTO;
+import com.co.ceiba.parqueadero.repositorio.VehiculoRepository;
+import com.co.ceiba.parqueadero.servicio.VehiculoService;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class VehiculoTest {
 	private static final String PLACA = "PL0001";
 	private static final String MODELO = "2019";
-	private static final Double CILINDRAJE = 150.0;
+	private static final Double CILINDRAJE = 650.0;
 	private static final Long ID_VEHICULO = 1L;
-	private static final Long ID_CARRO = 1L;
-	private static final Long ID_MOTO = 1L;
 
-	@Test
-	public void guardarVehiculoCarro() {
-		CarroDTO carroDTO = new CarroDTO(ID_CARRO, MODELO, ID_VEHICULO, PLACA, TipoVehiculo.CARRO.toString());
+	@Test 
+	public void guardarVehiculoCarro() { 
+		CarroDTO carroDTO = new CarroDTO(MODELO, ID_VEHICULO, PLACA, TipoVehiculo.CARRO.toString());
 		assertEquals(PLACA, carroDTO.getPlaca());
 		assertEquals(MODELO, carroDTO.getModelo());
 		assertEquals(TipoVehiculo.CARRO.toString(), carroDTO.getTipoVehiculo());
-		assertEquals(ID_CARRO, carroDTO.getIdCarro());
 		assertEquals(ID_VEHICULO, carroDTO.getIdVehiculo());
+ 
+	}
+
+	@Test 
+	public void guardarVehiculoMoto() {
+		MotoDTO motoDTO = new MotoDTO(CILINDRAJE, ID_VEHICULO, PLACA, TipoVehiculo.MOTO.toString());
+		assertEquals(PLACA, motoDTO.getPlaca());
+		assertEquals(CILINDRAJE, motoDTO.getCilindraje());
+		assertEquals(TipoVehiculo.MOTO.toString(), motoDTO.getTipoVehiculo());
+		assertEquals(ID_VEHICULO, motoDTO.getIdVehiculo());
 
 	}
 
 	@Test
-	public void guardarVehiculoMoto() {
-		MotoDTO motoDTO = new MotoDTO(ID_MOTO, CILINDRAJE, ID_VEHICULO, PLACA, TipoVehiculo.MOTO.toString());
-		assertEquals(PLACA, motoDTO.getPlaca());
-		assertEquals(CILINDRAJE, motoDTO.getCilindraje());
-		assertEquals(TipoVehiculo.MOTO.toString(), motoDTO.getTipoVehiculo());
-		assertEquals(ID_CARRO, motoDTO.getIdMoto());
-		assertEquals(ID_VEHICULO, motoDTO.getIdVehiculo());
+	public void registrarVehiculoCarro() {
+		VehiculoRepository vehiculoRepository = mock(VehiculoRepository.class);
+
+		when(vehiculoRepository.registrar(Mockito.any(VehiculoDTO.class)))
+				.thenReturn(new VehiculoDTO(1l, PLACA, TipoVehiculo.CARRO.toString()));
+
+		VehiculoService vehiculoService = new VehiculoService(vehiculoRepository);
+		VehiculoDTO vehiculoDTO = new CarroDTO(MODELO, ID_VEHICULO, PLACA, TipoVehiculo.CARRO.toString());
+		VehiculoDTO vehiculoDTO2 = vehiculoService.guardar(vehiculoDTO);
+
+		assertEquals(vehiculoDTO2.getPlaca(), PLACA);
+
+	} 
+
+	@Test 
+	public void registrarVehiculoMoto() {
+		VehiculoRepository vehiculoRepository = mock(VehiculoRepository.class);
+
+		when(vehiculoRepository.registrar(Mockito.any(VehiculoDTO.class)))
+				.thenReturn(new VehiculoDTO(ID_VEHICULO, PLACA, TipoVehiculo.MOTO.toString()));
+
+		VehiculoService vehiculoService = new VehiculoService(vehiculoRepository);
+		VehiculoDTO vehiculoDTO = new MotoDTO(CILINDRAJE, ID_VEHICULO, PLACA, TipoVehiculo.MOTO.toString());
+		VehiculoDTO vehiculoDTO2 = vehiculoService.guardar(vehiculoDTO);
+
+		assertEquals(vehiculoDTO2.getPlaca(), PLACA);
+
+	} 
+
+	@Test
+	public void listarPorTipo() {
+		VehiculoRepository vehiculoRepository = mock(VehiculoRepository.class);
+		when(vehiculoRepository.listarPorTipo(TipoVehiculo.CARRO.toString()))
+				.thenReturn(Arrays.asList(new VehiculoDTO(1l, PLACA, TipoVehiculo.CARRO.toString())));
+		VehiculoService vehiculoService = new VehiculoService(vehiculoRepository);
+		List<VehiculoDTO> listaVehiculo = vehiculoService.listarPorTipo(TipoVehiculo.CARRO.toString());
+		assertEquals(listaVehiculo.size(), 1);
+	
 
 	}
 

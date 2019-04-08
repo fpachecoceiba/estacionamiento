@@ -1,47 +1,65 @@
 package com.co.ceiba.parqueadero.pintegracion;
-
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
+import org.junit.Before;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import com.co.ceiba.parqueadero.dominio.CarroDTO;
-
-@RunWith(SpringRunner.class)
+import com.co.ceiba.parqueadero.dominio.MotoDTO;
+import com.co.ceiba.parqueadero.dominio.TipoVehiculo;
+import com.fasterxml.jackson.databind.ObjectMapper;
+//@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class EntradaParqueaderoIntTest {
 
-	@LocalServerPort
-	private int puerto;
-	private static final String LOCALHOST_URL = "http://localhost:";
 
-	private static final String URL_CARRO = "/apiv1/vehiculos/carro";
+	private static final String URL_CARRO = "http://localhost:8080/apiv1/vehiculo/carro";
+   private WebApplicationContext webApplicationContext;
+ 
+	   private MockMvc mockMvc;
 
-	TestRestTemplate testRestTemplate = new TestRestTemplate();
-	HttpHeaders httpHeaders = new HttpHeaders();
-
-	@Test
-	public void registrarVehiculoTest() {
-		CarroDTO carroDTO = new CarroDTO(1l, "2017", 1l, "AAA0123", "CARRO");
-		HttpEntity<CarroDTO> entity = new HttpEntity<>(carroDTO, httpHeaders);
-		ResponseEntity<String> response = testRestTemplate.exchange(getUrl(URL_CARRO), HttpMethod.POST,
-				entity, String.class);
-		HttpStatus codigo = response.getStatusCode();
-		assertEquals(HttpStatus.OK, codigo);
-
-	}
+	   @Before
+	   public void setup() {
+	       mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+	   }
+	   
+	  // @Test
+	   public void vehiculos() throws Exception {
+		   CarroDTO user = new CarroDTO("MODELO", 1L, "00002", TipoVehiculo.CARRO.toString());
+		   MotoDTO motoDTO = new MotoDTO(550.0, 1l, "5455", TipoVehiculo.MOTO.toString());
+		    mockMvc.perform(
+		            post(URL_CARRO)
+		                    .contentType(MediaType.APPLICATION_JSON)
+		                    .content(asJsonString(user)))
+		            .andExpect(status().isCreated())
+		            .andExpect(header().string("location", containsString(URL_CARRO)));
+		   
+	   }
 	
-	private String getUrl(String uri) {
-		return LOCALHOST_URL + puerto + uri;
-	}
+	   public static String asJsonString(final Object obj) {
+		    try {
+		        final ObjectMapper mapper = new ObjectMapper();
+		        final String jsonContent = mapper.writeValueAsString(obj);
+		        return jsonContent;
+		    } catch (Exception e) {
+		        throw new RuntimeException(e);
+		    }
+		} 
+
 
 }

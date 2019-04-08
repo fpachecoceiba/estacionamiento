@@ -1,20 +1,25 @@
 package com.co.ceiba.parqueadero.servicio.reglas;
 
+import java.util.List;
+
 import com.co.ceiba.parqueadero.dominio.VehiculoDTO;
 import com.co.ceiba.parqueadero.dominio.excepcion.ExisteVehiculoException;
-import com.co.ceiba.parqueadero.servicio.VehiculoService;
+import com.co.ceiba.parqueadero.repositorio.VehiculoRepository;
 
 public class ValidarVehiculo {
 	public static final String MENSAJE = "El vehiculo ya existe ";
-	private VehiculoService vehiculoService;
-	public ValidarVehiculo(VehiculoService vehiculoService) {
-		this.vehiculoService = vehiculoService;
+
+	private VehiculoRepository vehiculoRepository;
+
+	public ValidarVehiculo(VehiculoRepository vehiculoRepository) {
+		this.vehiculoRepository = vehiculoRepository;
 	}
+
 	public void verificar(String placa) {
-		VehiculoDTO vehiculoDTO = vehiculoService.buscarPorPlaca(placa);
-		if (vehiculoDTO != null) {
-			throw new ExisteVehiculoException(MENSAJE); 
-		} 
+		List<VehiculoDTO> vehiculoDTO = vehiculoRepository.findByPlaca(placa);
+		if (!vehiculoDTO.isEmpty()) {
+			throw new ExisteVehiculoException(MENSAJE);
+		}
 	}
-	
+
 }

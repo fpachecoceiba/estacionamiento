@@ -6,16 +6,18 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
+import org.springframework.stereotype.Service;
+
 import com.co.ceiba.parqueadero.dominio.TipoCobro;
 import com.co.ceiba.parqueadero.dominio.TipoVehiculo;
-import com.co.ceiba.parqueadero.servicio.TarifaService;
+import com.co.ceiba.parqueadero.repositorio.TarifaRepository;
 
 public class CalcularTarifaSalida {
 
 	public static final Integer RANGO_HORA_INFERIOR = 9;
 	public static final Integer RANGO_HORA_SUPERIOR = 24;
 
-	public static final Double CILINDRAJE_MAX = 500.0;
+	public static final Double CILINDRAJE_MAX = 500.0; 
 	public static final Double VALOR_EXCEDENTE = 2000.0;
 
 	private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -26,13 +28,13 @@ public class CalcularTarifaSalida {
 	private static String stringfromDateTime = "2019-04-05 04:00:00";
 	private static LocalDateTime fromDateTime = LocalDateTime.parse(stringfromDateTime, formatter);
 
-	private TarifaService tarifaService;
+	private TarifaRepository tarifaRepository;
 
-	public CalcularTarifaSalida(TarifaService tarifaService) {
-		this.tarifaService = tarifaService;
+	public CalcularTarifaSalida(TarifaRepository tarifaRepository) {
+		this.tarifaRepository = tarifaRepository;
 	}
 
-	public Double getValorTarifa(String tipoVehiculo, Double cilindraje) {
+	public Double getValorTarifa(String tipoVehiculo, Double cilindraje,LocalDateTime toDateTime,LocalDateTime fromDateTime ) {
 		Integer dias = 0;
 		Integer horas = 0;
 		Long tiempoDuracion = getHora(toDateTime, fromDateTime);
@@ -50,13 +52,13 @@ public class CalcularTarifaSalida {
 		} else {
 			horas = tiempoDuracion.intValue();
 		}
-		
+
 		Double valorHoras = getTarifa(TipoCobro.HORA.toString(), tipoVehiculo) * horas;
 		Double valorDias = getTarifa(TipoCobro.DIA.toString(), tipoVehiculo) * dias;
 		Double excedente = getExedenteMoto(cilindraje, tipoVehiculo);
 
 		return valorDias + valorHoras + excedente;
-	}
+	} 
 
 	public Long getHora(LocalDateTime fechaEntrada, LocalDateTime fechaSalida) {
 		ZonedDateTime zdt2 = fechaEntrada.atZone(ZoneId.systemDefault());
@@ -66,9 +68,9 @@ public class CalcularTarifaSalida {
 		long diff = d1.getTime() - d2.getTime();
 		return diff / (60 * 60 * 1000);
 	}
-
+ 
 	public Double getTarifa(String modalidad, String tipoVehiculo) {
-		return tarifaService.consultarTarifa(modalidad, tipoVehiculo).getValor();
+		return tarifaRepository.consultarTarifa(modalidad, tipoVehiculo).get(0).getValor();
 
 	}
 
@@ -77,7 +79,7 @@ public class CalcularTarifaSalida {
 			if (cilindraje > CILINDRAJE_MAX) {
 				return VALOR_EXCEDENTE;
 			} else {
-				return 0.0;
+				return 0.0; 
 			}
 		}
 		return 0.0;

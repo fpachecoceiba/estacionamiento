@@ -1,6 +1,5 @@
 package com.co.ceiba.parqueadero.controlador;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,13 +13,15 @@ import com.co.ceiba.parqueadero.servicio.EntradaParqueoService;
 @RequestMapping("/apiv1/entradas")
 public class EntradaParqueaderoController {
 
-	@Autowired
 	private EntradaParqueoService entradaParqueoService;
+
+	public EntradaParqueaderoController(EntradaParqueoService entradaParqueoService) {
+		this.entradaParqueoService = entradaParqueoService;
+	}
 
 	@PostMapping("/registrar")
 	public EntradaParqueoDTO registrarIngreso(@RequestBody VehiculoDTO vehiculoDTO) {
 		return entradaParqueoService.registrar(vehiculoDTO);
 	}
-	
 
 }

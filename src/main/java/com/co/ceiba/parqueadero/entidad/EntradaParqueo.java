@@ -18,7 +18,7 @@ public class EntradaParqueo {
 
 	@Id
 	@Column(name = "id_entrada")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idEntrada;
 
 	@Column(name = "fecha_entrada", nullable = false)
@@ -36,7 +36,7 @@ public class EntradaParqueo {
 
 	public EntradaParqueo() {
 		super();
-	}
+	} 
 
 	public EntradaParqueo(Long idEntrada, Timestamp fechaEntrada, Boolean activo, String tipoVehiculo,Vehiculo idVehiculo) {
 		super();

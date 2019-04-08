@@ -14,11 +14,12 @@ public class SalidaParqueaderoDTO {
 		super();
 	}
 
-	public SalidaParqueaderoDTO(Long idSalida, LocalDateTime fechaSalida, EntradaParqueoDTO entradaParqueo, Double valor) {
+	public SalidaParqueaderoDTO(Long idSalida, LocalDateTime fechaSalida, EntradaParqueoDTO entradaParqueo,
+			Double valor) {
 		super();
 		this.idSalida = idSalida;
 		this.fechaSalida = fechaSalida;
-		this.entradaParqueo = entradaParqueo;
+		this.entradaParqueo = entradaParqueo; 
 		this.valor = valor;
 	}
 
@@ -33,6 +34,7 @@ public class SalidaParqueaderoDTO {
 	public LocalDateTime getFechaSalida() {
 		return fechaSalida;
 	}
+
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	public void setFechaSalida(LocalDateTime fechaSalida) {
 		this.fechaSalida = fechaSalida;
@@ -45,7 +47,7 @@ public class SalidaParqueaderoDTO {
 	public void setEntradaParqueo(EntradaParqueoDTO entradaParqueo) {
 		this.entradaParqueo = entradaParqueo;
 	}
-
+ 
 	public Double getValor() {
 		return valor;
 	}

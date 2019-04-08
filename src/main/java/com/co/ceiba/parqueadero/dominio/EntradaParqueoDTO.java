@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class EntradaParqueoDTO {
 	private Long idEntrada;
-	private LocalDateTime fechaEntrada;
+	LocalDateTime fechaEntrada;
 	private Boolean activo;
 	private Vehiculo idVehiculo;
 
@@ -22,7 +22,7 @@ public class EntradaParqueoDTO {
 		this.activo = activo;
 		this.idVehiculo = idVehiculo; 
 	}
-
+ 
 	public Long getIdEntrada() {
 		return idEntrada;
 	}

@@ -1,16 +1,11 @@
 package com.co.ceiba.parqueadero.repositorio;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import java.util.List;
 
-import com.co.ceiba.parqueadero.entidad.Tarifa;
+import com.co.ceiba.parqueadero.dominio.TarifaDTO;
 
-public interface TarifaRepository extends JpaRepository<Tarifa, Long>, JpaSpecificationExecutor<Tarifa> {
+public interface TarifaRepository  {
 
-	@Query(value = "SELECT tr FROM tarifa tr WHERE tr.modalidad = :modalidad AND tr.tipoVehiculo = :tipoVehiculo")
-	Tarifa consultarTarifa(@Param(value = "modalidad") String modalidad,
-			@Param(value = "tipoVehiculo") String tipoVehiculo);
+	List<TarifaDTO> consultarTarifa(String modalidad,String tipoVehiculo);
 
 }

@@ -6,7 +6,7 @@ public class TarifaDTO {
 	private String tipoVehiculo;
 
 	public TarifaDTO() {
-		super();
+		super(); 
 	}
 
 	public TarifaDTO(String modalidad, Double valor, String tipoVehiculo) {

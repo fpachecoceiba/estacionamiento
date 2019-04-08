@@ -6,14 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
-@Entity
-@Table(name = "vehiculo", uniqueConstraints = { @UniqueConstraint(columnNames = { "placa" }) })
+@Entity(name = "vehiculo")
+@Table(name = "vehiculo")
 public class Vehiculo {
 	@Id
 	@Column(name = "id_vehiculo")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idVehiculo;
 
 	@Column(name = "placa", nullable = false)
@@ -26,10 +25,11 @@ public class Vehiculo {
 		super();
 	}
 
-	public Vehiculo(Long idVehiculo, String placa) {
+	public Vehiculo(Long idVehiculo, String placa, String tipoVehiculo) {
 		super();
 		this.idVehiculo = idVehiculo;
 		this.placa = placa;
+		this.tipoVehiculo = tipoVehiculo;
 
 	}
 
@@ -42,7 +42,7 @@ public class Vehiculo {
 	}
 
 	public String getPlaca() {
-		return placa; 
+		return placa;
 	}
 
 	public void setPlaca(String placa) {

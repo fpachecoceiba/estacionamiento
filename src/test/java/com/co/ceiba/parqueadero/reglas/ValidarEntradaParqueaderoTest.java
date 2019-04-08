@@ -2,13 +2,17 @@ package com.co.ceiba.parqueadero.reglas;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 
 import org.junit.Test;
 
-import com.co.ceiba.parqueadero.servicio.EntradaParqueoService;
+import com.co.ceiba.parqueadero.dominio.EntradaParqueoDTO;
+import com.co.ceiba.parqueadero.entidad.Vehiculo;
+import com.co.ceiba.parqueadero.repositorio.EntradaParqueoRepository;
 import com.co.ceiba.parqueadero.servicio.reglas.ValidarEntradaParqueadero;
 
 public class ValidarEntradaParqueaderoTest {
@@ -21,19 +25,32 @@ public class ValidarEntradaParqueaderoTest {
 
 	@Test
 	public void validarEntradaNoValida() {
-		EntradaParqueoService entradaParqueoService = mock(EntradaParqueoService.class);
-		ValidarEntradaParqueadero validarEntradaParqueadero = new ValidarEntradaParqueadero(entradaParqueoService);
+		EntradaParqueoRepository entradaParqueoRepository = mock(EntradaParqueoRepository.class);
+		ValidarEntradaParqueadero validarEntradaParqueadero = new ValidarEntradaParqueadero(entradaParqueoRepository);
 		boolean valida = validarEntradaParqueadero.ingresoValidoSegunDiaPlaca(PLACA_NO_VALIDA, fechaEntrada);
-		assertEquals(valida, false); 
- 
-	}
-	
+		assertEquals(valida, false);
+
+	} 
+
 	@Test
-	public void validarEntradaValida() { 
-		EntradaParqueoService entradaParqueoService = mock(EntradaParqueoService.class);
-		ValidarEntradaParqueadero validarEntradaParqueadero = new ValidarEntradaParqueadero(entradaParqueoService);
+	public void validarEntradaValida() {
+		EntradaParqueoRepository entradaParqueoRepository = mock(EntradaParqueoRepository.class);
+		ValidarEntradaParqueadero validarEntradaParqueadero = new ValidarEntradaParqueadero(entradaParqueoRepository);
 		boolean valida = validarEntradaParqueadero.ingresoValidoSegunDiaPlaca(PLACA_VALIDA, fechaEntrada);
 		assertEquals(valida, true);
+
+	}
+
+	@Test
+	public void existeEntradaRegistradaTrue() {
+		EntradaParqueoRepository entradaParqueoRepository = mock(EntradaParqueoRepository.class);
+		ValidarEntradaParqueadero validarEntradaParqueadero = new ValidarEntradaParqueadero(entradaParqueoRepository);
+		Vehiculo vehiculo = null;
+
+		when(entradaParqueoRepository.consultarActivaPorPlaca(PLACA_VALIDA))
+				.thenReturn(Arrays.asList(new EntradaParqueoDTO(1l, fechaEntrada, true, vehiculo)));
+
+		assertEquals(validarEntradaParqueadero.existeEntradaRegistrada(PLACA_VALIDA), true); 
 
 	}
 

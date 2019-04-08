@@ -15,7 +15,7 @@ import com.co.ceiba.parqueadero.dominio.excepcion.RegistroNoExisteException;
 
 @ControllerAdvice
 @CrossOrigin("*")
-public class ControlErrorHandler {
+public class ControlErrorHandler { 
 
 	@ExceptionHandler(RegistroNoExisteException.class)
 	public ResponseEntity<RespuestaErrorDTO> handleException(RegistroNoExisteException ex, WebRequest request) {

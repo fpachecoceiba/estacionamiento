@@ -5,33 +5,36 @@ import java.util.List;
 import com.co.ceiba.parqueadero.dominio.EntradaParqueoDTO;
 import com.co.ceiba.parqueadero.dominio.TipoVehiculo;
 import com.co.ceiba.parqueadero.dominio.excepcion.ParqueaderoNoDisponibleException;
-import com.co.ceiba.parqueadero.servicio.EntradaParqueoService;
+import com.co.ceiba.parqueadero.repositorio.EntradaParqueoRepository;
 
 public class ValidarStock {
-
 
 	public static final String MENSAJE_CARRO = "No hay disponibilidad para carros en el parqueadero";
 	public static final String MENSAJE_MOTO = "No hay disponibilidad para motos en el parqueadero";
 
-	private EntradaParqueoService entradaParqueoService;
+	private EntradaParqueoRepository entradaParqueoRepository;
 
-	public ValidarStock(EntradaParqueoService entradaParqueoService) {
-		this.entradaParqueoService = entradaParqueoService;
-	}   
+	public ValidarStock(EntradaParqueoRepository entradaParqueoRepository) {
+		this.entradaParqueoRepository = entradaParqueoRepository;
+	}
 
-	public void validarStock(String tipoVehiculo,Integer stock) { 
+	public Boolean validarStock(String tipoVehiculo, Integer stock) {
 		if (tipoVehiculo.equals(TipoVehiculo.CARRO.toString())) {
-			List<EntradaParqueoDTO> cantCarroActiva = entradaParqueoService.listarActivas(tipoVehiculo);
+			List<EntradaParqueoDTO> cantCarroActiva = entradaParqueoRepository.listaActivas(tipoVehiculo);
 			if (cantCarroActiva.size() >= stock) {
-				throw new ParqueaderoNoDisponibleException(MENSAJE_CARRO);
+				return false;
+				
 			}
 		} else if (tipoVehiculo.equals(TipoVehiculo.MOTO.toString())) {
-			List<EntradaParqueoDTO> cantMotoActiva = entradaParqueoService.listarActivas(tipoVehiculo);
+			List<EntradaParqueoDTO> cantMotoActiva = entradaParqueoRepository.listaActivas(tipoVehiculo);
 			if (cantMotoActiva.size() >= stock) {
-				throw new ParqueaderoNoDisponibleException(MENSAJE_MOTO); 
-			} 
+				return false;
+				
+			}
 
 		}
+		return true;
 
 	}
+
 }

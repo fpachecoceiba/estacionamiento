@@ -2,19 +2,13 @@ package com.co.ceiba.parqueadero.repositorio;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import com.co.ceiba.parqueadero.dominio.EntradaParqueoDTO;
 
-import com.co.ceiba.parqueadero.entidad.EntradaParqueo;
+public interface EntradaParqueoRepository {
+	List<EntradaParqueoDTO> listaActivas(String tipoVehiculo);
 
-public interface EntradaParqueoRepository
-		extends JpaRepository<EntradaParqueo, Long>, JpaSpecificationExecutor<EntradaParqueo> {
+	List<EntradaParqueoDTO> consultarActivaPorPlaca(String placa);
 
-	@Query(value = "SELECT ent FROM entrada_parqueo ent WHERE ent.tipoVehiculo = :tipoVehiculo AND ent.activo = true")
-	public List<EntradaParqueo> listaActivas(@Param(value = "tipoVehiculo") String tipoVehiculo);
-
-	@Query(value = "SELECT ent FROM entrada_parqueo ent WHERE ent.idVehiculo.placa = :placa AND ent.activo = true")
-	public EntradaParqueo consultarActivaPorId(@Param(value = "placa") String placa);
+	EntradaParqueoDTO guardar(EntradaParqueoDTO entradaParqueoDTO);
+	void actualizar(EntradaParqueoDTO entradaParqueoDTO);
 }
