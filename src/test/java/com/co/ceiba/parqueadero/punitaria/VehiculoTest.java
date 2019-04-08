@@ -32,7 +32,7 @@ public class VehiculoTest {
 	private static final String MODELO = "2019";
 	private static final Double CILINDRAJE = 650.0;
 	private static final Long ID_VEHICULO = 1L;
-
+ 
 	@Test
 	public void guardarVehiculoCarro() {
 		CarroDTO carroDTO = new CarroDTO(MODELO, ID_VEHICULO, PLACA, TipoVehiculo.CARRO.toString());

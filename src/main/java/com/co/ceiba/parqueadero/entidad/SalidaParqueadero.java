@@ -36,13 +36,7 @@ public class SalidaParqueadero {
 
 	}
 
-	public SalidaParqueadero(Long idSalida, LocalDateTime fechaSalida, EntradaParqueo entradaParqueo, Double valor) {
-		super();
-		this.idSalida = idSalida;
-		this.fechaSalida = fechaSalida;
-		this.entradaParqueo = entradaParqueo;
-		this.valor = valor;
-	}
+
 
 	public Long getIdSalida() {
 		return idSalida;

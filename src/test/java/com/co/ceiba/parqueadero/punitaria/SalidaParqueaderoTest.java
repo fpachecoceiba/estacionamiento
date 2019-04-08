@@ -44,7 +44,7 @@ public class SalidaParqueaderoTest {
 
 	private static final Double VALOR_ESPERADO_CARRO = 11000.0;
 	private static final Double VALOR_ESPERADO_MOTO = 6000.0;
-
+ 
 	private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
 	// datos de fechas para prueba carro un dia y tres horas retorno de 11000.0
