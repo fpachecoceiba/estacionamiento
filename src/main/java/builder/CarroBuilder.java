@@ -6,7 +6,7 @@ import com.co.ceiba.parqueadero.entidad.Carro;
 
 public class CarroBuilder {
 	
-	private CarroBuilder() {
+	public CarroBuilder() {
 		
 	}
 	public static CarroDTO getCarroDTO(Carro carro) {
