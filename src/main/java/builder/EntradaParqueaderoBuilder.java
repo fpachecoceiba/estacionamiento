@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import com.co.ceiba.parqueadero.dominio.EntradaParqueoDTO;
 import com.co.ceiba.parqueadero.entidad.EntradaParqueo;
 
-public class EntradaParqueaderoBuilder {
+public final class EntradaParqueaderoBuilder {
 	
 	private EntradaParqueaderoBuilder() {
 		

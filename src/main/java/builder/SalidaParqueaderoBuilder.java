@@ -3,7 +3,7 @@ package builder;
 import com.co.ceiba.parqueadero.dominio.SalidaParqueaderoDTO;
 import com.co.ceiba.parqueadero.entidad.SalidaParqueadero;
 
-public class SalidaParqueaderoBuilder {
+public final class SalidaParqueaderoBuilder {
 
 	private SalidaParqueaderoBuilder() {
 

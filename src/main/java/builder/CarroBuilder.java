@@ -4,9 +4,9 @@ import com.co.ceiba.parqueadero.dominio.CarroDTO;
 import com.co.ceiba.parqueadero.dominio.TipoVehiculo;
 import com.co.ceiba.parqueadero.entidad.Carro;
 
-public class CarroBuilder {
+public final class CarroBuilder {
 	
-	public CarroBuilder() {
+	private CarroBuilder() {
 		
 	}
 	public static CarroDTO getCarroDTO(Carro carro) {
