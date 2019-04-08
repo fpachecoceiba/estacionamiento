@@ -22,7 +22,7 @@ public final class CarroBuilder {
 	}
 
 	public static Carro getCarroEntidad(CarroDTO carroDTO) {
-		Carro carro = null;
+		Carro carro = null; 
 		if (carroDTO != null) {
 			carro = new Carro();
 			carro.setIdVehiculo(carroDTO.getIdVehiculo());

@@ -11,8 +11,12 @@ public final class MotoBuilder {
 	}
 
 	public static MotoDTO getMotoDTO(Moto moto) {
+		MotoDTO motoDTO = null;
+		if (moto != null) {
+			motoDTO = new MotoDTO(moto.getCilindraje(), moto.getIdVehiculo(), moto.getPlaca(), moto.getTipoVehiculo());
+		}
+		return motoDTO;
 
-		return new MotoDTO(moto.getCilindraje(), moto.getIdVehiculo(), moto.getPlaca(), moto.getTipoVehiculo());
 	}
 
 	public static Moto getEntidad(MotoDTO motoDTO) {

@@ -24,7 +24,7 @@ public class VehiculoController {
 		this.vehiculoService = vehiculoService;
 	}
 	
-	@CrossOrigin
+
 	@PostMapping("/carro")
 	public VehiculoDTO guardarCarro(@RequestBody CarroDTO carroDTO) {
 		return vehiculoService.guardar(carroDTO);

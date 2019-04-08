@@ -19,10 +19,12 @@ import com.co.ceiba.parqueadero.dominio.MotoDTO;
 import com.co.ceiba.parqueadero.dominio.TipoVehiculo;
 import com.co.ceiba.parqueadero.dominio.VehiculoDTO;
 import com.co.ceiba.parqueadero.entidad.Carro;
+import com.co.ceiba.parqueadero.entidad.Moto;
 import com.co.ceiba.parqueadero.repositorio.VehiculoRepository;
 import com.co.ceiba.parqueadero.servicio.VehiculoService;
 
 import builder.CarroBuilder;
+import builder.MotoBuilder;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -32,17 +34,17 @@ public class VehiculoTest {
 	private static final Double CILINDRAJE = 650.0;
 	private static final Long ID_VEHICULO = 1L;
 
-	@Test 
-	public void guardarVehiculoCarro() { 
+	@Test
+	public void guardarVehiculoCarro() {
 		CarroDTO carroDTO = new CarroDTO(MODELO, ID_VEHICULO, PLACA, TipoVehiculo.CARRO.toString());
 		assertEquals(PLACA, carroDTO.getPlaca());
 		assertEquals(MODELO, carroDTO.getModelo());
 		assertEquals(TipoVehiculo.CARRO.toString(), carroDTO.getTipoVehiculo());
 		assertEquals(ID_VEHICULO, carroDTO.getIdVehiculo());
- 
-	} 
 
-	@Test 
+	}
+
+	@Test
 	public void guardarVehiculoMoto() {
 		MotoDTO motoDTO = new MotoDTO(CILINDRAJE, ID_VEHICULO, PLACA, TipoVehiculo.MOTO.toString());
 		assertEquals(PLACA, motoDTO.getPlaca());
@@ -65,9 +67,9 @@ public class VehiculoTest {
 
 		assertEquals(vehiculoDTO2.getPlaca(), PLACA);
 
-	} 
+	}
 
-	@Test 
+	@Test
 	public void registrarVehiculoMoto() {
 		VehiculoRepository vehiculoRepository = mock(VehiculoRepository.class);
 
@@ -80,7 +82,7 @@ public class VehiculoTest {
 
 		assertEquals(vehiculoDTO2.getPlaca(), PLACA);
 
-	} 
+	}
 
 	@Test
 	public void listarPorTipo() {
@@ -90,60 +92,95 @@ public class VehiculoTest {
 		VehiculoService vehiculoService = new VehiculoService(vehiculoRepository);
 		List<VehiculoDTO> listaVehiculo = vehiculoService.listarPorTipo(TipoVehiculo.CARRO.toString());
 		assertEquals(listaVehiculo.size(), 1);
-	
 
 	}
-	
-	@Test 
-	public void carroBuilderEntidad() {  
-		CarroDTO carroDTO= new CarroDTO(MODELO, ID_VEHICULO, PLACA, TipoVehiculo.CARRO.toString());
+
+	@Test
+	public void carroBuilderEntidad() {
+		CarroDTO carroDTO = new CarroDTO(MODELO, ID_VEHICULO, PLACA, TipoVehiculo.CARRO.toString());
 		Carro carro = CarroBuilder.getCarroEntidad(carroDTO);
 		assertEquals(PLACA, carro.getPlaca());
 		assertEquals(MODELO, carro.getModelo());
 		assertEquals(TipoVehiculo.CARRO.toString(), carro.getTipoVehiculo());
 		assertEquals(ID_VEHICULO, carro.getIdVehiculo());
- 
-	} 
-	
-	@Test 
-	public void carroBuilderDTO() {  
+
+	}
+
+	@Test
+	public void carroBuilderDTO() {
 		Carro carro = new Carro();
 		carro.setIdVehiculo(ID_VEHICULO);
 		carro.setModelo(MODELO);
 		carro.setPlaca(PLACA);
 		carro.setTipoVehiculo(TipoVehiculo.CARRO.toString());
-		
-		CarroDTO carroDTO= CarroBuilder.getCarroDTO(carro);
-	
+
+		CarroDTO carroDTO = CarroBuilder.getCarroDTO(carro);
+
 		assertEquals(PLACA, carroDTO.getPlaca());
 		assertEquals(MODELO, carroDTO.getModelo());
 		assertEquals(TipoVehiculo.CARRO.toString(), carroDTO.getTipoVehiculo());
 		assertEquals(ID_VEHICULO, carroDTO.getIdVehiculo());
- 
-	}  
-	
-	
-	@Test 
-	public void carroBuilderDTONull() {  
-		Carro carro =null;
-		
-		CarroDTO carroDTO= CarroBuilder.getCarroDTO(carro);
-	
-		assertNull(carroDTO);
-		
-	}  
-	
+
+	}
+
 	@Test
-	public void carroBuilderEntidadNull() {  
-		CarroDTO carroDTO =null;
-		
-		Carro carro= CarroBuilder.getCarroEntidad(carroDTO);
-	
+	public void motoBuilderEntidad() {
+		MotoDTO motoDTO = new MotoDTO(CILINDRAJE, ID_VEHICULO, PLACA, TipoVehiculo.MOTO.toString());
+		Moto moto = MotoBuilder.getEntidad(motoDTO);
+		assertEquals(PLACA, moto.getPlaca());
+		assertEquals(CILINDRAJE, moto.getCilindraje());
+		assertEquals(TipoVehiculo.MOTO.toString(), moto.getTipoVehiculo());
+		assertEquals(ID_VEHICULO, moto.getIdVehiculo());
+
+	}
+
+	@Test
+	public void motoBuilderDTO() {
+		Moto moto = new Moto();
+		moto.setIdVehiculo(ID_VEHICULO);
+		moto.setCilindraje(CILINDRAJE);
+		moto.setPlaca(PLACA);
+		moto.setTipoVehiculo(TipoVehiculo.MOTO.toString());
+
+		MotoDTO motoDTO = MotoBuilder.getMotoDTO(moto);
+
+		assertEquals(PLACA, motoDTO.getPlaca());
+		assertEquals(CILINDRAJE, motoDTO.getCilindraje());
+		assertEquals(TipoVehiculo.MOTO.toString(), motoDTO.getTipoVehiculo());
+		assertEquals(ID_VEHICULO, motoDTO.getIdVehiculo());
+
+	}
+
+	@Test
+	public void carroBuilderDTONull() {
+		Carro carro = null;
+		CarroDTO carroDTO = CarroBuilder.getCarroDTO(carro);
+		assertNull(carroDTO);
+
+	}
+
+	@Test
+	public void carroBuilderEntidadNull() {
+		CarroDTO carroDTO = null;
+		Carro carro = CarroBuilder.getCarroEntidad(carroDTO);
 		assertNull(carro);
-		
-	}  
 
+	}
 
+	@Test
+	public void motoBuilderDTONull() {
+		Moto moto = null;
+		MotoDTO motoDTO = MotoBuilder.getMotoDTO(moto);
+		assertNull(motoDTO);
 
+	}
+
+	@Test
+	public void motoBuilderEntidadNull() {
+		MotoDTO motoDTO = null;
+		Moto moto = MotoBuilder.getEntidad(motoDTO);
+		assertNull(moto);
+
+	}
 
 }

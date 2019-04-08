@@ -28,7 +28,7 @@ public class VehiculoControllerTest {
 	TestRestTemplate testRestTemplate = new TestRestTemplate();
 	HttpHeaders httpHeaders = new HttpHeaders();
 
-	//@Test
+	//@Test 
 	public void registrarVehiculoTest() {
 		CarroDTO carroDTO = new CarroDTO("2017", 1l, "pl000", "CARRO");
 		HttpEntity<CarroDTO> entity = new HttpEntity<>(carroDTO, httpHeaders);
