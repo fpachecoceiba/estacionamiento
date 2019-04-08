@@ -28,12 +28,7 @@ public class Tarifa {
 		super();
 	}
 
-	public Tarifa(String modalidad, Double valor, String tipoVehiculo) {
-		super();
-		this.modalidad = modalidad;
-		this.valor = valor;
-		this.tipoVehiculo = tipoVehiculo;
-	}
+
 
 	public String getModalidad() {
 		return modalidad;
