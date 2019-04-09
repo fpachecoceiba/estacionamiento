@@ -22,15 +22,15 @@ public class CarroRepositoryImpl implements CarroRepository {
 
 	@Override
 	public VehiculoDTO save(VehiculoDTO vehiculoDTO) {
-		Carro carro = CarroBuilder.getCarroEntidad((CarroDTO) vehiculoDTO);
+		Carro carro = CarroBuilder.getEntidad((CarroDTO) vehiculoDTO);
 		entityManager.persist(carro);
-		return CarroBuilder.getCarroDTO(carro); 
+		return CarroBuilder.getDTO(carro); 
 	}
 
 	@Override
 	public CarroDTO findById(String placa) {
 		Carro carro = entityManager.find(Carro.class, placa);
-		return CarroBuilder.getCarroDTO(carro);
+		return CarroBuilder.getDTO(carro);
 	}
 
 }

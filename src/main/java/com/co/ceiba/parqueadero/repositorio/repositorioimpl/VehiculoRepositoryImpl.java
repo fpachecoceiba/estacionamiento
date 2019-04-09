@@ -33,16 +33,16 @@ public class VehiculoRepositoryImpl implements VehiculoRepository {
 	public VehiculoDTO registrar(VehiculoDTO vehiculoDTO) {
 		if (vehiculoDTO instanceof CarroDTO) {
 			CarroDTO carroDTO = (CarroDTO) vehiculoDTO;
-			Carro carro = CarroBuilder.getCarroEntidad(carroDTO);
+			Carro carro = CarroBuilder.getEntidad(carroDTO);
 			entityManager.persist(carro);
-			return CarroBuilder.getCarroDTO(carro); 
+			return CarroBuilder.getDTO(carro); 
  
 		}
 		if (vehiculoDTO instanceof MotoDTO) {
 			MotoDTO motoDTO = (MotoDTO) vehiculoDTO;
 			Moto moto = MotoBuilder.getEntidad(motoDTO);
 			entityManager.persist(moto);
-			return MotoBuilder.getMotoDTO(moto);
+			return MotoBuilder.getDTO(moto);
 		}
 
 		return null;

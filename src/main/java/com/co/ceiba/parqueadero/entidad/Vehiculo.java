@@ -16,17 +16,7 @@ public class Vehiculo {
 	@Column(name = "tipo_vehiculo", nullable = false)
 	private String tipoVehiculo;
 
-	public Vehiculo() {
-		super();
-	}
 
-	public Vehiculo(String placa, String tipoVehiculo) {
-		super();
-		
-		this.placa = placa;
-		this.tipoVehiculo = tipoVehiculo;
-
-	}
 
 
 	public String getPlaca() {

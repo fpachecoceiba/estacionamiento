@@ -69,9 +69,6 @@ public class EntradaParqueo {
 		this.activo = activo;
 	}
 
-	public String getTipoVehiculo() {
-		return tipoVehiculo;
-	}
 
 	public void setTipoVehiculo(String tipoVehiculo) {
 		this.tipoVehiculo = tipoVehiculo;

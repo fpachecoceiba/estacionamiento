@@ -12,7 +12,7 @@ public final class MotoBuilder {
 
 	}
 
-	public static MotoDTO getMotoDTO(Moto moto) {
+	public static MotoDTO getDTO(Moto moto) {
 		MotoDTO motoDTO = null;
 		if (moto != null) {
 			motoDTO = new MotoDTO(moto.getCilindraje(), moto.getPlaca(), moto.getTipoVehiculo());

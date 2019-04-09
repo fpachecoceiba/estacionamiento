@@ -40,15 +40,18 @@ public class SalidaParqueaderoBuilderTest {
 		entradaParqueoDTO.setIdEntrada(ID_ENTRADA);
 		entradaParqueoDTO.setActivo(Boolean.TRUE);
 		entradaParqueoDTO.setFechaEntrada(FECHA_ENTRADA);
-		entradaParqueoDTO.setIdVehiculo(new Vehiculo(PLACA, TipoVehiculo.CARRO.toString()));
-
+		Vehiculo vehiculo = new Vehiculo();
+		vehiculo.setPlaca(PLACA);
+		vehiculo.setTipoVehiculo(TipoVehiculo.CARRO.toString());
+		entradaParqueoDTO.setIdVehiculo(vehiculo);
+ 
 		SalidaParqueadero salidaParqueadero = new SalidaParqueadero();
 		salidaParqueadero.setEntradaParqueo(EntradaParqueaderoBuilder.getEntidad(entradaParqueoDTO));
 		salidaParqueadero.setFechaSalida(FECHA_SALIDA);
 		salidaParqueadero.setIdSalida(ID_SALIDA);
 		salidaParqueadero.setValor(VALOR);
 
-		SalidaParqueaderoDTO salidaParqueaderoDTO = SalidaParqueaderoBuilder.getSalidaParqueaderoDTO(salidaParqueadero);
+		SalidaParqueaderoDTO salidaParqueaderoDTO = SalidaParqueaderoBuilder.getDTO(salidaParqueadero);
 
 		assertEquals(Boolean.TRUE, salidaParqueaderoDTO.getEntradaParqueo().getActivo());
 		assertEquals(VALOR, salidaParqueaderoDTO.getValor());
@@ -61,7 +64,10 @@ public class SalidaParqueaderoBuilderTest {
 		entradaParqueoDTO.setIdEntrada(ID_ENTRADA);
 		entradaParqueoDTO.setActivo(Boolean.TRUE);
 		entradaParqueoDTO.setFechaEntrada(FECHA_ENTRADA);
-		entradaParqueoDTO.setIdVehiculo(new Vehiculo(PLACA, TipoVehiculo.CARRO.toString()));
+		Vehiculo vehiculo = new Vehiculo();
+		vehiculo.setPlaca(PLACA);
+		vehiculo.setTipoVehiculo(TipoVehiculo.CARRO.toString());
+		entradaParqueoDTO.setIdVehiculo(vehiculo);
 
 		SalidaParqueaderoDTO salidaParqueaderoDTO = new SalidaParqueaderoDTO();
 		salidaParqueaderoDTO.setEntradaParqueo(entradaParqueoDTO);
@@ -70,7 +76,7 @@ public class SalidaParqueaderoBuilderTest {
 		salidaParqueaderoDTO.setValor(VALOR);
 
 		SalidaParqueadero salidaParqueadero = SalidaParqueaderoBuilder
-				.getSalidaParqueaderoEntidad(salidaParqueaderoDTO);
+				.getEntidad(salidaParqueaderoDTO);
 
 		assertEquals(Boolean.TRUE, salidaParqueadero.getEntradaParqueo().getActivo());
 		assertEquals(VALOR, salidaParqueadero.getValor());
@@ -80,7 +86,7 @@ public class SalidaParqueaderoBuilderTest {
 	@Test
 	public void salidaBuilderDTONull() {
 		SalidaParqueadero salidaParqueadero = null;
-		SalidaParqueaderoDTO salidaParqueaderoDTO = SalidaParqueaderoBuilder.getSalidaParqueaderoDTO(salidaParqueadero);
+		SalidaParqueaderoDTO salidaParqueaderoDTO = SalidaParqueaderoBuilder.getDTO(salidaParqueadero);
 		assertNull(salidaParqueaderoDTO);
 
 	} 
@@ -88,7 +94,7 @@ public class SalidaParqueaderoBuilderTest {
 	@Test
 	public void salidaBuilderEntidadNull() {
 		SalidaParqueaderoDTO salidaParqueaderoDTO = null;
-		SalidaParqueadero salidaParqueadero = SalidaParqueaderoBuilder.getSalidaParqueaderoEntidad(salidaParqueaderoDTO);
+		SalidaParqueadero salidaParqueadero = SalidaParqueaderoBuilder.getEntidad(salidaParqueaderoDTO);
 		assertNull(salidaParqueadero);
 
 	}

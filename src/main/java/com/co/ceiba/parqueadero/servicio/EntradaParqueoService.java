@@ -69,7 +69,7 @@ public class EntradaParqueoService {
 			EntradaParqueoDTO entradaParqueoDTO = new EntradaParqueoDTO();
 			entradaParqueoDTO.setActivo(Boolean.TRUE);
 			entradaParqueoDTO.setFechaEntrada(fechaEntrada);
-			entradaParqueoDTO.setIdVehiculo(CarroBuilder.getCarroEntidad(carroDTO));
+			entradaParqueoDTO.setIdVehiculo(CarroBuilder.getEntidad(carroDTO));
 			return entradaParqueoRepository.guardar(entradaParqueoDTO);
 
 		} else if (tipoVehiculo.equals(TipoVehiculo.MOTO.toString())) {

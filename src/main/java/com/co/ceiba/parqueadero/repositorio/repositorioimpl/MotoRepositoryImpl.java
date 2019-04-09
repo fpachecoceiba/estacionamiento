@@ -20,7 +20,7 @@ public class MotoRepositoryImpl implements MotoRepository{
 	@Override
 	public MotoDTO findByPlaca(String placa) {
 		Moto moto = entityManager.find(Moto.class, placa);
-		return MotoBuilder.getMotoDTO(moto);
+		return MotoBuilder.getDTO(moto);
 	}
 	
 

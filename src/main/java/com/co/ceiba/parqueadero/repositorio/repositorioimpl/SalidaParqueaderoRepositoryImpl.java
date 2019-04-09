@@ -22,10 +22,10 @@ public class SalidaParqueaderoRepositoryImpl implements SalidaParqueaderoReposit
 	public SalidaParqueaderoDTO registrar(SalidaParqueaderoDTO salidaParqueaderoDTO) {
 
 		SalidaParqueadero salidaParqueadero = SalidaParqueaderoBuilder
-				.getSalidaParqueaderoEntidad(salidaParqueaderoDTO);
+				.getEntidad(salidaParqueaderoDTO);
 		entityManager.persist(salidaParqueadero);
 		entityManager.merge(salidaParqueadero.getEntradaParqueo());
-		return SalidaParqueaderoBuilder.getSalidaParqueaderoDTO(salidaParqueadero);
+		return SalidaParqueaderoBuilder.getDTO(salidaParqueadero);
 
 	}
 

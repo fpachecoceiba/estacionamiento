@@ -50,7 +50,7 @@ public class EntradaParqueaderoTest {
 
 		MotoRepository motoRepository = mock(MotoRepository.class);
 		EntradaParqueoDTO entradaParqueoDTOCarro = new EntradaParqueoDTO(1l, fechaEntrada, Boolean.TRUE,
-				CarroBuilder.getCarroEntidad(carroDTO));
+				CarroBuilder.getEntidad(carroDTO));
 		
 		EntradaParqueoRepository entradaParqueoRepository = mock(EntradaParqueoRepository.class);
 		when(entradaParqueoRepository.guardar(Mockito.any(EntradaParqueoDTO.class))).thenReturn(entradaParqueoDTOCarro); 

@@ -12,7 +12,7 @@ public final class CarroBuilder {
 
 	}
 
-	public static CarroDTO getCarroDTO(Carro carro) {
+	public static CarroDTO getDTO(Carro carro) {
 		CarroDTO carroDTO = null;
 		if (carro != null) {
 			carroDTO = new CarroDTO(carro.getModelo(), carro.getPlaca(),
@@ -23,7 +23,7 @@ public final class CarroBuilder {
 
 	}
 
-	public static Carro getCarroEntidad(CarroDTO carroDTO) {
+	public static Carro getEntidad(CarroDTO carroDTO) {
 		Carro carro = null; 
 		if (carroDTO != null) {
 			carro = new Carro();

@@ -9,7 +9,7 @@ public final class SalidaParqueaderoBuilder {
 
 	}
 
-	public static SalidaParqueadero getSalidaParqueaderoEntidad(SalidaParqueaderoDTO salidaParqueaderoDTO) {
+	public static SalidaParqueadero getEntidad(SalidaParqueaderoDTO salidaParqueaderoDTO) {
 		SalidaParqueadero salidaParqueadero = null;
 		if (salidaParqueaderoDTO != null) {
 			salidaParqueadero = new SalidaParqueadero();
@@ -24,7 +24,7 @@ public final class SalidaParqueaderoBuilder {
 		return salidaParqueadero;
 	}
 
-	public static SalidaParqueaderoDTO getSalidaParqueaderoDTO(SalidaParqueadero salidaParqueadero) {
+	public static SalidaParqueaderoDTO getDTO(SalidaParqueadero salidaParqueadero) {
 		SalidaParqueaderoDTO salidaParqueaderoDTO = null;
 		if (salidaParqueadero != null) {
 			salidaParqueaderoDTO = new SalidaParqueaderoDTO();

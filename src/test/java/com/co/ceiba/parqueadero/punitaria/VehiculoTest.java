@@ -98,7 +98,7 @@ public class VehiculoTest {
 	@Test
 	public void carroBuilderEntidad() {
 		CarroDTO carroDTO = new CarroDTO(MODELO, PLACA, TipoVehiculo.CARRO.toString());
-		Carro carro = CarroBuilder.getCarroEntidad(carroDTO);
+		Carro carro = CarroBuilder.getEntidad(carroDTO);
 		assertEquals(PLACA, carro.getPlaca());
 		assertEquals(MODELO, carro.getModelo());
 		assertEquals(TipoVehiculo.CARRO.toString(), carro.getTipoVehiculo());
@@ -112,7 +112,7 @@ public class VehiculoTest {
 		carro.setPlaca(PLACA);
 		carro.setTipoVehiculo(TipoVehiculo.CARRO.toString());
 
-		CarroDTO carroDTO = CarroBuilder.getCarroDTO(carro);
+		CarroDTO carroDTO = CarroBuilder.getDTO(carro);
 
 		assertEquals(PLACA, carroDTO.getPlaca());
 		assertEquals(MODELO, carroDTO.getModelo());
@@ -137,7 +137,7 @@ public class VehiculoTest {
 		moto.setPlaca(PLACA);
 		moto.setTipoVehiculo(TipoVehiculo.MOTO.toString());
 
-		MotoDTO motoDTO = MotoBuilder.getMotoDTO(moto);
+		MotoDTO motoDTO = MotoBuilder.getDTO(moto);
 
 		assertEquals(PLACA, motoDTO.getPlaca());
 		assertEquals(CILINDRAJE, motoDTO.getCilindraje());
@@ -148,7 +148,7 @@ public class VehiculoTest {
 	@Test
 	public void carroBuilderDTONull() {
 		Carro carro = null;
-		CarroDTO carroDTO = CarroBuilder.getCarroDTO(carro);
+		CarroDTO carroDTO = CarroBuilder.getDTO(carro);
 		assertNull(carroDTO);
 
 	}
@@ -156,7 +156,7 @@ public class VehiculoTest {
 	@Test
 	public void carroBuilderEntidadNull() {
 		CarroDTO carroDTO = null;
-		Carro carro = CarroBuilder.getCarroEntidad(carroDTO);
+		Carro carro = CarroBuilder.getEntidad(carroDTO);
 		assertNull(carro);
 
 	}
@@ -164,7 +164,7 @@ public class VehiculoTest {
 	@Test
 	public void motoBuilderDTONull() {
 		Moto moto = null;
-		MotoDTO motoDTO = MotoBuilder.getMotoDTO(moto);
+		MotoDTO motoDTO = MotoBuilder.getDTO(moto);
 		assertNull(motoDTO);
 
 	} 
