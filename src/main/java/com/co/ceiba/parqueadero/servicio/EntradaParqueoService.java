@@ -42,7 +42,7 @@ public class EntradaParqueoService {
 		this.vehiculoRepository = vehiculoRepository;
 	}
 
-	public EntradaParqueoDTO registrar(VehiculoDTO vehiculoDTO) {
+	public EntradaParqueoDTO registrar(VehiculoDTO vehiculoDTO) { 
 	
 		String placa = vehiculoDTO.getPlaca();
 
