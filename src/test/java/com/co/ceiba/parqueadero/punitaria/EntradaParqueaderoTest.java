@@ -38,7 +38,7 @@ public class EntradaParqueaderoTest {
 	private LocalDateTime fechaEntrada = LocalDateTime.now();
 
 	@Test
-	public void registrarCarro() { 
+	public void registrarCarro() {  
  
 		VehiculoRepository vehiculoRepository = mock(VehiculoRepository.class);
 		VehiculoDTO vehiculoDTO = new VehiculoDTO(PLACA, TipoVehiculo.CARRO.toString());
