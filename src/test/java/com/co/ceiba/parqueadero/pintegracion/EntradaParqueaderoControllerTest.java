@@ -17,7 +17,8 @@ import org.springframework.web.context.WebApplicationContext;
 import com.co.ceiba.parqueadero.dominio.CarroDTO;
 import com.co.ceiba.parqueadero.dominio.MotoDTO;
 import com.co.ceiba.parqueadero.dominio.TipoVehiculo;
-import com.co.ceiba.parqueadero.util.UtilTest;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -44,15 +45,15 @@ public class EntradaParqueaderoControllerTest {
 	public void registrarCarro() throws Exception {
 		CarroDTO carroDTO = new CarroDTO(MODELO, PLACA_CARRO, TipoVehiculo.CARRO.toString());
 		mockMvc.perform(
-				post(URL_CARRO).contentType(MediaType.APPLICATION_JSON).content(UtilTest.asJsonString(carroDTO)))
+				post(URL_CARRO).contentType(MediaType.APPLICATION_JSON).content(asJsonString(carroDTO)))
 				.andExpect(status().isOk());
 
 		mockMvc.perform(
-				post(URL_ENTRADA).contentType(MediaType.APPLICATION_JSON).content(UtilTest.asJsonString(carroDTO)))
+				post(URL_ENTRADA).contentType(MediaType.APPLICATION_JSON).content(asJsonString(carroDTO)))
 				.andExpect(status().isOk()); 
 		
 		mockMvc.perform(
-				post(URL_SALIDA).contentType(MediaType.APPLICATION_JSON).content(UtilTest.asJsonString(carroDTO)))
+				post(URL_SALIDA).contentType(MediaType.APPLICATION_JSON).content(asJsonString(carroDTO)))
 				.andExpect(status().isOk()); 
 	
 
@@ -61,16 +62,23 @@ public class EntradaParqueaderoControllerTest {
 	@Test
 	public void registrarMoto() throws Exception {
 		MotoDTO motoDTO = new MotoDTO(CILINDRAJE, PLACA_MOTO, TipoVehiculo.MOTO.toString());
-		mockMvc.perform(post(URL_MOTO).contentType(MediaType.APPLICATION_JSON).content(UtilTest.asJsonString(motoDTO)))
+		mockMvc.perform(post(URL_MOTO).contentType(MediaType.APPLICATION_JSON).content(asJsonString(motoDTO)))
 				.andExpect(status().isOk());
 		mockMvc.perform(
-				post(URL_ENTRADA).contentType(MediaType.APPLICATION_JSON).content(UtilTest.asJsonString(motoDTO)))
+				post(URL_ENTRADA).contentType(MediaType.APPLICATION_JSON).content(asJsonString(motoDTO)))
 				.andExpect(status().isOk());
 		
 		mockMvc.perform(
-				post(URL_SALIDA).contentType(MediaType.APPLICATION_JSON).content(UtilTest.asJsonString(motoDTO)))
+				post(URL_SALIDA).contentType(MediaType.APPLICATION_JSON).content(asJsonString(motoDTO)))
 				.andExpect(status().isOk()); 
-
+ 
 
 	}
+	
+	public static String asJsonString(final Object obj) throws JsonProcessingException {
+		ObjectMapper mapper = new ObjectMapper();
+		return mapper.writeValueAsString(obj);
+
+	}
+
 }
