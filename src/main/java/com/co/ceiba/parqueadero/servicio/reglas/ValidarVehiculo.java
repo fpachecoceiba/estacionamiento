@@ -1,7 +1,5 @@
 package com.co.ceiba.parqueadero.servicio.reglas;
 
-import java.util.List;
-
 import com.co.ceiba.parqueadero.dominio.VehiculoDTO;
 import com.co.ceiba.parqueadero.dominio.excepcion.ExisteVehiculoException;
 import com.co.ceiba.parqueadero.repositorio.VehiculoRepository;
@@ -16,8 +14,8 @@ public class ValidarVehiculo {
 	}
 
 	public void verificar(String placa) {
-		List<VehiculoDTO> vehiculoDTO = vehiculoRepository.findByPlaca(placa);
-		if (!vehiculoDTO.isEmpty()) {
+		VehiculoDTO vehiculoDTO = vehiculoRepository.findByPlaca(placa);
+		if (vehiculoDTO != null) {
 			throw new ExisteVehiculoException(MENSAJE);
 		}
 	}

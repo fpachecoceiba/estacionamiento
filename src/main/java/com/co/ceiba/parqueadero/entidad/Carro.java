@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Entity(name = "carro")
+@Entity
 @Table(name = "carro")
 public class Carro extends Vehiculo {
 

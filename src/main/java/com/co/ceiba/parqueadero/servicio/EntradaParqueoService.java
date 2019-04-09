@@ -27,7 +27,7 @@ public class EntradaParqueoService {
 	private static final Integer STOCK_MOTO = 10;
 	private static final String MENSAJE_NOEXISTE_VEHICULO = "No existe un vehiculo registrado para esta informacion";
 
-	private LocalDateTime fechaEntrada = LocalDateTime.now();
+	private LocalDateTime fechaEntrada = LocalDateTime.now(); 
 
 	private EntradaParqueoRepository entradaParqueoRepository; 
 	private CarroRepository carroRepository;
@@ -43,15 +43,16 @@ public class EntradaParqueoService {
 	}
 
 	public EntradaParqueoDTO registrar(VehiculoDTO vehiculoDTO) {
+	
+		String placa = vehiculoDTO.getPlaca();
 
-		VehiculoDTO vehiculoDTO2 = vehiculoRepository.findById(vehiculoDTO.getIdVehiculo());
+		VehiculoDTO vehiculoDTO2 = vehiculoRepository.findByPlaca(placa);
 		if (vehiculoDTO2 == null) {
 			throw new ParqueaderoNoDisponibleException(MENSAJE_NOEXISTE_VEHICULO);
 		}
 
 		String tipoVehiculo = vehiculoDTO2.getTipoVehiculo();
-		String placa = vehiculoDTO2.getPlaca();
-		Long idVehiculo = vehiculoDTO2.getIdVehiculo();
+		
 
 		if (!new ValidarEntradaParqueadero(entradaParqueoRepository).ingresoValidoSegunDiaPlaca(placa, fechaEntrada)) {
 			throw new ParqueaderoNoDisponibleException(ValidarEntradaParqueadero.MENSAJE);
@@ -63,8 +64,8 @@ public class EntradaParqueoService {
 		if (tipoVehiculo.equals(TipoVehiculo.CARRO.toString())) {
 			if (!new ValidarStock(entradaParqueoRepository).validarStock(tipoVehiculo, getStock(tipoVehiculo))) {
 				throw new ParqueaderoNoDisponibleException(ValidarStock.MENSAJE_CARRO);
-			} 
-			CarroDTO carroDTO = carroRepository.findById(idVehiculo);
+	 		} 
+			CarroDTO carroDTO = carroRepository.findById(placa);
 			EntradaParqueoDTO entradaParqueoDTO = new EntradaParqueoDTO();
 			entradaParqueoDTO.setActivo(Boolean.TRUE);
 			entradaParqueoDTO.setFechaEntrada(fechaEntrada);
@@ -75,14 +76,14 @@ public class EntradaParqueoService {
 			if (!new ValidarStock(entradaParqueoRepository).validarStock(tipoVehiculo, getStock(tipoVehiculo))) {
 				throw new ParqueaderoNoDisponibleException(ValidarStock.MENSAJE_MOTO);
 			}
-			MotoDTO motoDTO = motoRepository.findById(idVehiculo);
+			MotoDTO motoDTO = motoRepository.findByPlaca(placa);
 			EntradaParqueoDTO entradaParqueoDTO = new EntradaParqueoDTO();
 			entradaParqueoDTO.setActivo(Boolean.TRUE);
 			entradaParqueoDTO.setFechaEntrada(fechaEntrada);
 			entradaParqueoDTO.setIdVehiculo(MotoBuilder.getEntidad(motoDTO));
 			return entradaParqueoRepository.guardar(entradaParqueoDTO);
 		}
-
+		
 		return null;
 
 	}

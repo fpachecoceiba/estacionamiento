@@ -13,7 +13,7 @@ public class EntradaParqueoDTO {
 
 	public EntradaParqueoDTO() {
 		super();
-	}
+	} 
 
 	public EntradaParqueoDTO(Long idEntrada, LocalDateTime fechaEntrada, Boolean activo,Vehiculo idVehiculo) {
 		super();

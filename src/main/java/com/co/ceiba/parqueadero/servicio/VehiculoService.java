@@ -21,6 +21,7 @@ public class VehiculoService {
 	} 
 
 	public VehiculoDTO guardar(VehiculoDTO vehiculoDTO) { 
+		try {
 		new ValidarVehiculo(vehiculoRepository).verificar(vehiculoDTO.getPlaca());
 
 		if (vehiculoDTO instanceof CarroDTO) {
@@ -33,7 +34,10 @@ public class VehiculoService {
 			motoDTO.setTipoVehiculo(TipoVehiculo.MOTO.toString());
 			return vehiculoRepository.registrar(motoDTO);
 		}
-
+		}catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}
 		return null;
  
 	}

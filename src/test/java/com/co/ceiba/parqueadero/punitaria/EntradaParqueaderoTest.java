@@ -30,7 +30,7 @@ import com.co.ceiba.parqueadero.servicio.EntradaParqueoService;
 @DataJpaTest
 public class EntradaParqueaderoTest {
 
-	private static final Long ID_VEHICULO = 1L;
+
 	private static final String PLACA = "PL0001";
 	private static final Double CILINDRAJE = 650.0;
 	private static final String MODELO = "2019";
@@ -41,12 +41,12 @@ public class EntradaParqueaderoTest {
 	public void registrarCarro() { 
  
 		VehiculoRepository vehiculoRepository = mock(VehiculoRepository.class);
-		VehiculoDTO vehiculoDTO = new VehiculoDTO(ID_VEHICULO, PLACA, TipoVehiculo.CARRO.toString());
-		when(vehiculoRepository.findById(ID_VEHICULO)).thenReturn(vehiculoDTO);
+		VehiculoDTO vehiculoDTO = new VehiculoDTO(PLACA, TipoVehiculo.CARRO.toString());
+		when(vehiculoRepository.findByPlaca(PLACA)).thenReturn(vehiculoDTO);
 
 		CarroRepository carroRepository = mock(CarroRepository.class);
-		CarroDTO carroDTO = new CarroDTO(MODELO, ID_VEHICULO, PLACA, TipoVehiculo.CARRO.toString());
-		when(carroRepository.findById(ID_VEHICULO)).thenReturn(carroDTO);
+		CarroDTO carroDTO = new CarroDTO(MODELO, PLACA, TipoVehiculo.CARRO.toString());
+		when(carroRepository.findById(PLACA)).thenReturn(carroDTO);
 
 		MotoRepository motoRepository = mock(MotoRepository.class);
 		EntradaParqueoDTO entradaParqueoDTOCarro = new EntradaParqueoDTO(1l, fechaEntrada, Boolean.TRUE,
@@ -59,7 +59,7 @@ public class EntradaParqueaderoTest {
 				vehiculoRepository, carroRepository, motoRepository);
 		
 		EntradaParqueoDTO entradaParqueoDTO2 = entradaParqueoService.registrar(vehiculoDTO);
-		assertTrue(entradaParqueoDTO2.getActivo());
+		assertTrue(entradaParqueoDTO2.getActivo()); 
 
 	}
 	
@@ -67,13 +67,13 @@ public class EntradaParqueaderoTest {
 	public void registrarMoto() { 
 
 		VehiculoRepository vehiculoRepository = mock(VehiculoRepository.class);
-		VehiculoDTO vehiculoDTO = new VehiculoDTO(ID_VEHICULO, PLACA, TipoVehiculo.MOTO.toString());
-		when(vehiculoRepository.findById(ID_VEHICULO)).thenReturn(vehiculoDTO);
+		VehiculoDTO vehiculoDTO = new VehiculoDTO(PLACA, TipoVehiculo.MOTO.toString());
+		when(vehiculoRepository.findByPlaca(PLACA)).thenReturn(vehiculoDTO);
 
 		MotoRepository motoRepository = mock(MotoRepository.class);
 		CarroRepository carroRepository = mock(CarroRepository.class);
-		MotoDTO motoDTO = new MotoDTO(CILINDRAJE, ID_VEHICULO, PLACA, TipoVehiculo.MOTO.toString());
-		when(motoRepository.findById(ID_VEHICULO)).thenReturn(motoDTO);
+		MotoDTO motoDTO = new MotoDTO(CILINDRAJE, PLACA, TipoVehiculo.MOTO.toString());
+		when(motoRepository.findByPlaca(PLACA)).thenReturn(motoDTO);
 
 		
 		EntradaParqueoDTO entradaParqueoDTOCarro = new EntradaParqueoDTO(1l, fechaEntrada, Boolean.TRUE,

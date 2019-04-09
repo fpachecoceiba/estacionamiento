@@ -7,8 +7,8 @@ public class MotoDTO extends VehiculoDTO {
 		super();
 	}
 
-	public MotoDTO(Double cilindraje, Long idVehiculo, String placa,String tipoVehiculo) {
-		super(idVehiculo, placa,tipoVehiculo);
+	public MotoDTO(Double cilindraje, String placa,String tipoVehiculo) {
+		super(placa,tipoVehiculo);
 
 		this.cilindraje = cilindraje;
 	}

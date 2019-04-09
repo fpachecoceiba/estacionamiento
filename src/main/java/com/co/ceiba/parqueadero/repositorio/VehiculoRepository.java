@@ -8,10 +8,10 @@ public interface VehiculoRepository {
 
 	 VehiculoDTO registrar(VehiculoDTO vehiculoDTO);
 
-	 List<VehiculoDTO> findByPlaca(String placa);
+	 VehiculoDTO findByPlaca(String placa);
 
 	 List<VehiculoDTO> listarPorTipo(String tipoVehiculo);
 	
-	 VehiculoDTO findById(Long id);
+	 
 
 }

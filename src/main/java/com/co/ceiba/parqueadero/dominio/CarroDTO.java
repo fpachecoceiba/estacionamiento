@@ -7,8 +7,8 @@ public class CarroDTO extends VehiculoDTO {
 		super();
 	}
 
-	public CarroDTO(String modelo, Long idVehiculo, String placa, String tipoVehiculo) {
-		super(idVehiculo, placa, tipoVehiculo);
+	public CarroDTO(String modelo,String placa, String tipoVehiculo) {
+		super(placa, tipoVehiculo);
 		this.modelo = modelo;
 
 	}

@@ -28,8 +28,8 @@ public class CarroRepositoryImpl implements CarroRepository {
 	}
 
 	@Override
-	public CarroDTO findById(Long id) {
-		Carro carro = entityManager.find(Carro.class, id);
+	public CarroDTO findById(String placa) {
+		Carro carro = entityManager.find(Carro.class, placa);
 		return CarroBuilder.getCarroDTO(carro);
 	}
 

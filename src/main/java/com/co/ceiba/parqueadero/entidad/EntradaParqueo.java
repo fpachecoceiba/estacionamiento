@@ -31,7 +31,7 @@ public class EntradaParqueo {
 	private String tipoVehiculo;
  
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "id_vehiculo")
+	@JoinColumn(name = "placa")
 	private Vehiculo idVehiculo;
 
 	public EntradaParqueo() {

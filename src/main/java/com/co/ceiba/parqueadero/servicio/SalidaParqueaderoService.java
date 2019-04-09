@@ -42,15 +42,15 @@ public class SalidaParqueaderoService {
 	}
 
 	public SalidaParqueaderoDTO registrar(VehiculoDTO vehiculoDTO) {
-		VehiculoDTO vehiculoDTO2 = vehiculoRepository.findById(vehiculoDTO.getIdVehiculo());
+		String placa = vehiculoDTO.getPlaca();
+		VehiculoDTO vehiculoDTO2 = vehiculoRepository.findByPlaca(placa);
 		if (vehiculoDTO2 == null) {
 			throw new RegistroNoExisteException(MENSAJE_NOEXISTE_VEHICULO);
 		}
 		String tipoVehiculo = vehiculoDTO2.getTipoVehiculo();
-		String placa = vehiculoDTO2.getPlaca();
 		Double cilindraje = 0.0;
 		if (tipoVehiculo.equals(TipoVehiculo.MOTO.toString())) {
-			MotoDTO motoDTO = motoRepository.findById(vehiculoDTO2.getIdVehiculo());
+			MotoDTO motoDTO = motoRepository.findByPlaca(vehiculoDTO2.getPlaca());
 			cilindraje = motoDTO.getCilindraje();
 		}
 

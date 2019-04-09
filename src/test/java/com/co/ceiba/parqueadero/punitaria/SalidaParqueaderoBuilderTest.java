@@ -24,7 +24,6 @@ public class SalidaParqueaderoBuilderTest {
 
 	private static final Long ID_ENTRADA = 1L;
 	private static final Long ID_SALIDA = 1L;
-	private static final Long ID_VEHICULO = 1L;
 	private static final String PLACA = "PL0001";
 	private static final Double VALOR = 11000.0;
 	private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -40,7 +39,7 @@ public class SalidaParqueaderoBuilderTest {
 		entradaParqueoDTO.setIdEntrada(ID_ENTRADA);
 		entradaParqueoDTO.setActivo(Boolean.TRUE);
 		entradaParqueoDTO.setFechaEntrada(FECHA_ENTRADA);
-		entradaParqueoDTO.setIdVehiculo(new Vehiculo(ID_VEHICULO, PLACA, TipoVehiculo.CARRO.toString()));
+		entradaParqueoDTO.setIdVehiculo(new Vehiculo(PLACA, TipoVehiculo.CARRO.toString()));
 
 		SalidaParqueadero salidaParqueadero = new SalidaParqueadero();
 		salidaParqueadero.setEntradaParqueo(EntradaParqueaderoBuilder.getEntidad(entradaParqueoDTO));

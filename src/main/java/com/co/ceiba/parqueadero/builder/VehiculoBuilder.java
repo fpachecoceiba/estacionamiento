@@ -13,7 +13,6 @@ public final class VehiculoBuilder {
 		Vehiculo vehiculo = null;
 		if (vehiculoDTO != null) {
 			vehiculo = new Vehiculo();
-			vehiculo.setIdVehiculo(vehiculoDTO.getIdVehiculo());
 			vehiculo.setPlaca(vehiculoDTO.getPlaca());
 			vehiculo.setTipoVehiculo(vehiculoDTO.getTipoVehiculo());
 		}
@@ -25,8 +24,7 @@ public final class VehiculoBuilder {
 		VehiculoDTO vehiculoDTO = null;
 		if (vehiculo != null) {
 			vehiculoDTO = new VehiculoDTO();
-			vehiculoDTO.setIdVehiculo(vehiculo.getIdVehiculo());
-			vehiculoDTO.setPlaca(vehiculo.getPlaca());
+			vehiculoDTO.setPlaca(vehiculo.getPlaca()); 
 			vehiculoDTO.setTipoVehiculo(vehiculo.getTipoVehiculo());
 		}
 		return vehiculoDTO;

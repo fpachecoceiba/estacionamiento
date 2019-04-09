@@ -15,7 +15,7 @@ public final class CarroBuilder {
 	public static CarroDTO getCarroDTO(Carro carro) {
 		CarroDTO carroDTO = null;
 		if (carro != null) {
-			carroDTO = new CarroDTO(carro.getModelo(), carro.getIdVehiculo(), carro.getPlaca(),
+			carroDTO = new CarroDTO(carro.getModelo(), carro.getPlaca(),
 					carro.getTipoVehiculo());
 
 		}
@@ -27,7 +27,6 @@ public final class CarroBuilder {
 		Carro carro = null; 
 		if (carroDTO != null) {
 			carro = new Carro();
-			carro.setIdVehiculo(carroDTO.getIdVehiculo());
 			carro.setPlaca(carroDTO.getPlaca());
 			carro.setModelo(carroDTO.getModelo());
 			carro.setTipoVehiculo(TipoVehiculo.CARRO.toString());

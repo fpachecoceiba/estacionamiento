@@ -67,7 +67,6 @@ public class SalidaParqueaderoTest {
 	private static final Double VALOR_DIA_MOTO = 4000.0;
 	private static final Double VALOR_HORA_MOTO = 500.0;
 
-	private static final Long ID_VEHICULO = 1L;
 	private static final Long ID_ENTRADA = 1L;
 	private static final Long ID_SALIDA = 1L;
 	private static final String PLACA = "PL0001";
@@ -80,8 +79,8 @@ public class SalidaParqueaderoTest {
 		VehiculoRepository vehiculoRepository = mock(VehiculoRepository.class);
 		MotoRepository motoRepository = mock(MotoRepository.class);
 
-		VehiculoDTO vehiculoDTO = new VehiculoDTO(ID_VEHICULO, PLACA, TipoVehiculo.CARRO.toString());
-		when(vehiculoRepository.findById(ID_VEHICULO)).thenReturn(vehiculoDTO);
+		VehiculoDTO vehiculoDTO = new VehiculoDTO(PLACA, TipoVehiculo.CARRO.toString());
+		when(vehiculoRepository.findByPlaca(PLACA)).thenReturn(vehiculoDTO);
 
 		EntradaParqueoDTO entradaParqueoDTO = new EntradaParqueoDTO(ID_ENTRADA, FECHA_ENTRADA, Boolean.TRUE,
 				VehiculoBuilder.getVehiculoEntidad(vehiculoDTO));
@@ -119,8 +118,8 @@ public class SalidaParqueaderoTest {
 	public void registrarMoto() {
 		VehiculoRepository vehiculoRepository = mock(VehiculoRepository.class);
 		MotoRepository motoRepository = mock(MotoRepository.class);
-		VehiculoDTO vehiculoDTO = new VehiculoDTO(ID_VEHICULO, PLACA, TipoVehiculo.MOTO.toString());
-		when(vehiculoRepository.findById(ID_VEHICULO)).thenReturn(vehiculoDTO);
+		VehiculoDTO vehiculoDTO = new VehiculoDTO( PLACA, TipoVehiculo.MOTO.toString());
+		when(vehiculoRepository.findByPlaca(PLACA)).thenReturn(vehiculoDTO);
 
 		EntradaParqueoDTO entradaParqueoDTO = new EntradaParqueoDTO(ID_ENTRADA, FECHA_ENTRADA, Boolean.TRUE,
 				VehiculoBuilder.getVehiculoEntidad(vehiculoDTO));
@@ -149,8 +148,8 @@ public class SalidaParqueaderoTest {
 		SalidaParqueaderoService salidaParqueaderoService = new SalidaParqueaderoService(salidaParqueaderoRepository,
 				entradaParqueoRepository, vehiculoRepository, tarifaRepository, motoRepository);
 
-		MotoDTO motoDTO = new MotoDTO(CILINDRAJE, ID_VEHICULO, PLACA, TipoVehiculo.MOTO.toString());
-		when(motoRepository.findById(ID_VEHICULO)).thenReturn(motoDTO);
+		MotoDTO motoDTO = new MotoDTO(CILINDRAJE, PLACA, TipoVehiculo.MOTO.toString());
+		when(motoRepository.findByPlaca(PLACA)).thenReturn(motoDTO);
 		SalidaParqueaderoDTO salidaParqueaderoDTO2 = salidaParqueaderoService.registrar(motoDTO);
 		assertEquals(salidaParqueaderoDTO2.getValor(), VALOR_ESPERADO_MOTO);
 

@@ -26,7 +26,7 @@ public class EntradaParqueoRepositoryImpl implements EntradaParqueoRepository {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	@Override
+	@Override 
 	public List<EntradaParqueoDTO> listaActivas(String tipoVehiculo) {
 		TypedQuery<EntradaParqueo> query = entityManager.createQuery(
 				"SELECT ent FROM entrada_parqueo ent WHERE ent.tipoVehiculo = :tipoVehiculo AND ent.activo = true ",

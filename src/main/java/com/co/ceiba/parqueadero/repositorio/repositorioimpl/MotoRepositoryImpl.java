@@ -18,8 +18,8 @@ public class MotoRepositoryImpl implements MotoRepository{
 	private EntityManager entityManager;
 
 	@Override
-	public MotoDTO findById(Long id) {
-		Moto moto = entityManager.find(Moto.class, id);
+	public MotoDTO findByPlaca(String placa) {
+		Moto moto = entityManager.find(Moto.class, placa);
 		return MotoBuilder.getMotoDTO(moto);
 	}
 	

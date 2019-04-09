@@ -4,8 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.util.Arrays;
-
 import org.junit.Test;
 
 import com.co.ceiba.parqueadero.dominio.TipoVehiculo;
@@ -21,9 +19,8 @@ public class ValidarVehiculoTest {
 	public void validarVehiculo() {
 		VehiculoRepository vehiculoRepository = mock(VehiculoRepository.class);
 		ValidarVehiculo validarVehiculo = new ValidarVehiculo(vehiculoRepository);
-		when(vehiculoRepository.findByPlaca(PLACA)).thenReturn(Arrays
-				.asList(new VehiculoDTO(1l,PLACA,TipoVehiculo.CARRO.toString())));
-		try {  
+		when(vehiculoRepository.findByPlaca(PLACA)).thenReturn(new VehiculoDTO(PLACA,TipoVehiculo.CARRO.toString()));
+		try {   
 			validarVehiculo.verificar(PLACA); 
 		} catch (ExisteVehiculoException e) {  
 			assertEquals(e.getMessage(), ValidarVehiculo.MENSAJE);   

@@ -31,26 +31,24 @@ public class VehiculoTest {
 	private static final String PLACA = "PL0001";
 	private static final String MODELO = "2019";
 	private static final Double CILINDRAJE = 650.0;
-	private static final Long ID_VEHICULO = 1L;
  
 	@Test
 	public void guardarVehiculoCarro() {
-		CarroDTO carroDTO = new CarroDTO(MODELO, ID_VEHICULO, PLACA, TipoVehiculo.CARRO.toString());
+		CarroDTO carroDTO = new CarroDTO(MODELO, PLACA, TipoVehiculo.CARRO.toString());
 		assertEquals(PLACA, carroDTO.getPlaca());
 		assertEquals(MODELO, carroDTO.getModelo());
 		assertEquals(TipoVehiculo.CARRO.toString(), carroDTO.getTipoVehiculo());
-		assertEquals(ID_VEHICULO, carroDTO.getIdVehiculo());
+		
 
 	}
 
 	@Test
 	public void guardarVehiculoMoto() {
-		MotoDTO motoDTO = new MotoDTO(CILINDRAJE, ID_VEHICULO, PLACA, TipoVehiculo.MOTO.toString());
+		MotoDTO motoDTO = new MotoDTO(CILINDRAJE, PLACA, TipoVehiculo.MOTO.toString());
 		assertEquals(PLACA, motoDTO.getPlaca());
 		assertEquals(CILINDRAJE, motoDTO.getCilindraje());
 		assertEquals(TipoVehiculo.MOTO.toString(), motoDTO.getTipoVehiculo());
-		assertEquals(ID_VEHICULO, motoDTO.getIdVehiculo());
-
+	
 	}
  
 	@Test
@@ -58,10 +56,10 @@ public class VehiculoTest {
 		VehiculoRepository vehiculoRepository = mock(VehiculoRepository.class);
 
 		when(vehiculoRepository.registrar(Mockito.any(VehiculoDTO.class)))
-				.thenReturn(new VehiculoDTO(1l, PLACA, TipoVehiculo.CARRO.toString()));
+				.thenReturn(new VehiculoDTO( PLACA, TipoVehiculo.CARRO.toString()));
 
 		VehiculoService vehiculoService = new VehiculoService(vehiculoRepository);
-		VehiculoDTO vehiculoDTO = new CarroDTO(MODELO, ID_VEHICULO, PLACA, TipoVehiculo.CARRO.toString());
+		VehiculoDTO vehiculoDTO = new CarroDTO(MODELO, PLACA, TipoVehiculo.CARRO.toString());
 		VehiculoDTO vehiculoDTO2 = vehiculoService.guardar(vehiculoDTO);
 
 		assertEquals(vehiculoDTO2.getPlaca(), PLACA);
@@ -73,10 +71,10 @@ public class VehiculoTest {
 		VehiculoRepository vehiculoRepository = mock(VehiculoRepository.class);
 
 		when(vehiculoRepository.registrar(Mockito.any(VehiculoDTO.class)))
-				.thenReturn(new VehiculoDTO(ID_VEHICULO, PLACA, TipoVehiculo.MOTO.toString()));
+				.thenReturn(new VehiculoDTO(PLACA, TipoVehiculo.MOTO.toString()));
 
 		VehiculoService vehiculoService = new VehiculoService(vehiculoRepository);
-		VehiculoDTO vehiculoDTO = new MotoDTO(CILINDRAJE, ID_VEHICULO, PLACA, TipoVehiculo.MOTO.toString());
+		VehiculoDTO vehiculoDTO = new MotoDTO(CILINDRAJE, PLACA, TipoVehiculo.MOTO.toString());
 		VehiculoDTO vehiculoDTO2 = vehiculoService.guardar(vehiculoDTO);
 
 		assertEquals(vehiculoDTO2.getPlaca(), PLACA);
@@ -87,7 +85,7 @@ public class VehiculoTest {
 	public void listarPorTipo() {
 		VehiculoRepository vehiculoRepository = mock(VehiculoRepository.class);
 		when(vehiculoRepository.listarPorTipo(TipoVehiculo.CARRO.toString()))
-				.thenReturn(Arrays.asList(new VehiculoDTO(1l, PLACA, TipoVehiculo.CARRO.toString())));
+				.thenReturn(Arrays.asList(new VehiculoDTO( PLACA, TipoVehiculo.CARRO.toString())));
 		VehiculoService vehiculoService = new VehiculoService(vehiculoRepository);
 		List<VehiculoDTO> listaVehiculo = vehiculoService.listarPorTipo(TipoVehiculo.CARRO.toString());
 		assertEquals(listaVehiculo.size(), 1);
@@ -99,19 +97,17 @@ public class VehiculoTest {
 
 	@Test
 	public void carroBuilderEntidad() {
-		CarroDTO carroDTO = new CarroDTO(MODELO, ID_VEHICULO, PLACA, TipoVehiculo.CARRO.toString());
+		CarroDTO carroDTO = new CarroDTO(MODELO, PLACA, TipoVehiculo.CARRO.toString());
 		Carro carro = CarroBuilder.getCarroEntidad(carroDTO);
 		assertEquals(PLACA, carro.getPlaca());
 		assertEquals(MODELO, carro.getModelo());
 		assertEquals(TipoVehiculo.CARRO.toString(), carro.getTipoVehiculo());
-		assertEquals(ID_VEHICULO, carro.getIdVehiculo());
-
+		
 	}
 
 	@Test
 	public void carroBuilderDTO() {
 		Carro carro = new Carro();
-		carro.setIdVehiculo(ID_VEHICULO);
 		carro.setModelo(MODELO);
 		carro.setPlaca(PLACA);
 		carro.setTipoVehiculo(TipoVehiculo.CARRO.toString());
@@ -121,25 +117,22 @@ public class VehiculoTest {
 		assertEquals(PLACA, carroDTO.getPlaca());
 		assertEquals(MODELO, carroDTO.getModelo());
 		assertEquals(TipoVehiculo.CARRO.toString(), carroDTO.getTipoVehiculo());
-		assertEquals(ID_VEHICULO, carroDTO.getIdVehiculo());
-
+		
 	}
 
 	@Test
 	public void motoBuilderEntidad() {
-		MotoDTO motoDTO = new MotoDTO(CILINDRAJE, ID_VEHICULO, PLACA, TipoVehiculo.MOTO.toString());
+		MotoDTO motoDTO = new MotoDTO(CILINDRAJE, PLACA, TipoVehiculo.MOTO.toString());
 		Moto moto = MotoBuilder.getEntidad(motoDTO);
 		assertEquals(PLACA, moto.getPlaca());
 		assertEquals(CILINDRAJE, moto.getCilindraje());
 		assertEquals(TipoVehiculo.MOTO.toString(), moto.getTipoVehiculo());
-		assertEquals(ID_VEHICULO, moto.getIdVehiculo());
-
+		
 	}
 
 	@Test
 	public void motoBuilderDTO() {
 		Moto moto = new Moto();
-		moto.setIdVehiculo(ID_VEHICULO);
 		moto.setCilindraje(CILINDRAJE);
 		moto.setPlaca(PLACA);
 		moto.setTipoVehiculo(TipoVehiculo.MOTO.toString());
@@ -149,8 +142,7 @@ public class VehiculoTest {
 		assertEquals(PLACA, motoDTO.getPlaca());
 		assertEquals(CILINDRAJE, motoDTO.getCilindraje());
 		assertEquals(TipoVehiculo.MOTO.toString(), motoDTO.getTipoVehiculo());
-		assertEquals(ID_VEHICULO, motoDTO.getIdVehiculo());
-
+		
 	}
 
 	@Test

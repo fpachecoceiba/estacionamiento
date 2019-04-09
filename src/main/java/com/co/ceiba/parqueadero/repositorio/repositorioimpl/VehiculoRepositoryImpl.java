@@ -36,7 +36,7 @@ public class VehiculoRepositoryImpl implements VehiculoRepository {
 			Carro carro = CarroBuilder.getCarroEntidad(carroDTO);
 			entityManager.persist(carro);
 			return CarroBuilder.getCarroDTO(carro); 
-
+ 
 		}
 		if (vehiculoDTO instanceof MotoDTO) {
 			MotoDTO motoDTO = (MotoDTO) vehiculoDTO;
@@ -49,11 +49,12 @@ public class VehiculoRepositoryImpl implements VehiculoRepository {
 	}
 
 	@Override
-	public List<VehiculoDTO> findByPlaca(String placa) {
-		TypedQuery<Vehiculo> query = entityManager.createQuery("SELECT vh FROM vehiculo vh WHERE vh.placa = :placa ",
-				Vehiculo.class);
-		query.setParameter("placa", placa);
-		return query.getResultList().stream().map(VehiculoBuilder::getVehiculoDTO).collect(Collectors.toList());
+	public VehiculoDTO findByPlaca(String placa) {
+		Vehiculo vehiculo = entityManager.find(Vehiculo.class, placa);
+		if (vehiculo != null) {
+			return VehiculoBuilder.getVehiculoDTO(vehiculo);
+		}
+		return null;
 	}
 
 	@Override
@@ -64,13 +65,6 @@ public class VehiculoRepositoryImpl implements VehiculoRepository {
 		return query.getResultList().stream().map(VehiculoBuilder::getVehiculoDTO).collect(Collectors.toList());
 	}
 
-	@Override
-	public VehiculoDTO findById(Long id) {
-		Vehiculo vehiculo = entityManager.find(Vehiculo.class, id);
-		if (vehiculo != null) {
-			return VehiculoBuilder.getVehiculoDTO(vehiculo);
-		}
-		return null;
-	}
+	
 
 }

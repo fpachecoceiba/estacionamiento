@@ -17,14 +17,12 @@ import com.co.ceiba.parqueadero.entidad.Vehiculo;
 @DataJpaTest
 public class VehiculoBuilderTest {
 
-	private static final Long ID_VEHICULO = 1L;
 
 	private static final String PLACA = "PC001";
 
 	@Test
 	public void vehiculoBuilderDTO() {
 		Vehiculo vehiculo = new Vehiculo();
-		vehiculo.setIdVehiculo(ID_VEHICULO);
 		vehiculo.setPlaca(PLACA);
 		vehiculo.setTipoVehiculo(TipoVehiculo.CARRO.toString());
 
@@ -32,21 +30,18 @@ public class VehiculoBuilderTest {
 
 		assertEquals(PLACA, vehiculoDTO.getPlaca());
 		assertEquals(TipoVehiculo.CARRO.toString(), vehiculoDTO.getTipoVehiculo());
-		assertEquals(ID_VEHICULO, vehiculoDTO.getIdVehiculo());
-
+		
 	}
 
 	@Test
 	public void vehiculoBuilderEntidad() {
 		VehiculoDTO vehiculoDTO = new  VehiculoDTO();
-		vehiculoDTO.setIdVehiculo(ID_VEHICULO);
 		vehiculoDTO.setPlaca(PLACA);
 		vehiculoDTO.setTipoVehiculo(TipoVehiculo.CARRO.toString());
 		Vehiculo vehiculo = VehiculoBuilder.getVehiculoEntidad(vehiculoDTO);
 		assertEquals(PLACA, vehiculo.getPlaca());
 		assertEquals(TipoVehiculo.CARRO.toString(), vehiculo.getTipoVehiculo());
-		assertEquals(ID_VEHICULO, vehiculo.getIdVehiculo());
-
+		
 	}
 	
 	@Test

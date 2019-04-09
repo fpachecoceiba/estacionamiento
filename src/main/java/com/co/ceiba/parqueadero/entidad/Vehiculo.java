@@ -2,19 +2,14 @@ package com.co.ceiba.parqueadero.entidad;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 @Entity(name = "vehiculo")
-@Table(name = "vehiculo")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Vehiculo {
 	@Id
-	@Column(name = "id_vehiculo")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long idVehiculo;
-
 	@Column(name = "placa", nullable = false)
 	private String placa;
 
@@ -25,21 +20,14 @@ public class Vehiculo {
 		super();
 	}
 
-	public Vehiculo(Long idVehiculo, String placa, String tipoVehiculo) {
+	public Vehiculo(String placa, String tipoVehiculo) {
 		super();
-		this.idVehiculo = idVehiculo;
+		
 		this.placa = placa;
 		this.tipoVehiculo = tipoVehiculo;
 
 	}
 
-	public Long getIdVehiculo() {
-		return idVehiculo;
-	}
-
-	public void setIdVehiculo(Long idVehiculo) {
-		this.idVehiculo = idVehiculo;
-	}
 
 	public String getPlaca() {
 		return placa;

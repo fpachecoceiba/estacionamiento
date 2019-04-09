@@ -5,5 +5,5 @@ import com.co.ceiba.parqueadero.dominio.VehiculoDTO;
 
 public interface CarroRepository {
 	VehiculoDTO save(VehiculoDTO vehiculoDTO);
-	 CarroDTO findById(Long id);
+	 CarroDTO findById(String  placa);
 }
