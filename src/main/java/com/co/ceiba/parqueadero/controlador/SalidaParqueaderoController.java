@@ -10,7 +10,7 @@ import com.co.ceiba.parqueadero.dominio.VehiculoDTO;
 import com.co.ceiba.parqueadero.servicio.SalidaParqueaderoService;
 
 @RestController
-@RequestMapping("/apiv1/salidas")
+@RequestMapping("/apiv1/salida")
 public class SalidaParqueaderoController {
 	private SalidaParqueaderoService salidaParqueaderoService;
 

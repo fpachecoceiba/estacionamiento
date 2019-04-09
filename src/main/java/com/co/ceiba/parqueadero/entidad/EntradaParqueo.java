@@ -51,9 +51,7 @@ public class EntradaParqueo {
 		return idEntrada;
 	}
 
-	public void setIdEntrada(Long idEntrada) {
-		this.idEntrada = idEntrada;
-	}
+
 
 	public Timestamp getFechaEntrada() {
 		return fechaEntrada;

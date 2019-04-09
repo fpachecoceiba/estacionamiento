@@ -52,7 +52,7 @@ public class VehiculoTest {
 	}
  
 	@Test
-	public void registrarVehiculoCarro() {
+	public void registrarVehiculoCarro() { 
 		VehiculoRepository vehiculoRepository = mock(VehiculoRepository.class);
 
 		when(vehiculoRepository.registrar(Mockito.any(VehiculoDTO.class)))
