@@ -55,7 +55,7 @@ public class EntradaParqueaderoControllerTest {
 		mockMvc.perform(
 				post(URL_SALIDA).contentType(MediaType.APPLICATION_JSON).content(asJsonString(carroDTO)))
 				.andExpect(status().isOk()); 
-	
+	 
 
 	}
  

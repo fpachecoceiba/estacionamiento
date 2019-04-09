@@ -41,7 +41,8 @@ public class SalidaParqueaderoService {
 
 	}
 
-	public SalidaParqueaderoDTO registrar(VehiculoDTO vehiculoDTO) { 
+	public SalidaParqueaderoDTO registrar(VehiculoDTO vehiculoDTO) {
+
 		String placa = vehiculoDTO.getPlaca();
 		VehiculoDTO vehiculoDTO2 = vehiculoRepository.findByPlaca(placa);
 		if (vehiculoDTO2 == null) {

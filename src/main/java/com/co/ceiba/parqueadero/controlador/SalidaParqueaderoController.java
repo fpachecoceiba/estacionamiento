@@ -22,6 +22,6 @@ public class SalidaParqueaderoController {
 	public SalidaParqueaderoDTO registrar(@RequestBody VehiculoDTO vehiculoDTO) {
 		return salidaParqueaderoService.registrar(vehiculoDTO);
 
-	}
+	} 
 
 }
