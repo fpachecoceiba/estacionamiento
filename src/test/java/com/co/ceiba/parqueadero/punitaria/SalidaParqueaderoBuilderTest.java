@@ -1,6 +1,7 @@
 package com.co.ceiba.parqueadero.punitaria;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -49,9 +50,47 @@ public class SalidaParqueaderoBuilderTest {
 
 		SalidaParqueaderoDTO salidaParqueaderoDTO = SalidaParqueaderoBuilder.getSalidaParqueaderoDTO(salidaParqueadero);
 
-		assertEquals(Boolean.TRUE,salidaParqueaderoDTO.getEntradaParqueo().getActivo());
+		assertEquals(Boolean.TRUE, salidaParqueaderoDTO.getEntradaParqueo().getActivo());
 		assertEquals(VALOR, salidaParqueaderoDTO.getValor());
-		
+
+	}
+
+	@Test
+	public void salidaBuilderEntidad() {
+		EntradaParqueoDTO entradaParqueoDTO = new EntradaParqueoDTO();
+		entradaParqueoDTO.setIdEntrada(ID_ENTRADA);
+		entradaParqueoDTO.setActivo(Boolean.TRUE);
+		entradaParqueoDTO.setFechaEntrada(FECHA_ENTRADA);
+		entradaParqueoDTO.setIdVehiculo(new Vehiculo(PLACA, TipoVehiculo.CARRO.toString()));
+
+		SalidaParqueaderoDTO salidaParqueaderoDTO = new SalidaParqueaderoDTO();
+		salidaParqueaderoDTO.setEntradaParqueo(entradaParqueoDTO);
+		salidaParqueaderoDTO.setFechaSalida(FECHA_SALIDA);
+		salidaParqueaderoDTO.setIdSalida(ID_SALIDA);
+		salidaParqueaderoDTO.setValor(VALOR);
+
+		SalidaParqueadero salidaParqueadero = SalidaParqueaderoBuilder
+				.getSalidaParqueaderoEntidad(salidaParqueaderoDTO);
+
+		assertEquals(Boolean.TRUE, salidaParqueadero.getEntradaParqueo().getActivo());
+		assertEquals(VALOR, salidaParqueadero.getValor());
+
+	}
+	
+	@Test
+	public void salidaBuilderDTONull() {
+		SalidaParqueadero salidaParqueadero = null;
+		SalidaParqueaderoDTO salidaParqueaderoDTO = SalidaParqueaderoBuilder.getSalidaParqueaderoDTO(salidaParqueadero);
+		assertNull(salidaParqueaderoDTO);
+
+	} 
+
+	@Test
+	public void salidaBuilderEntidadNull() {
+		SalidaParqueaderoDTO salidaParqueaderoDTO = null;
+		SalidaParqueadero salidaParqueadero = SalidaParqueaderoBuilder.getSalidaParqueaderoEntidad(salidaParqueaderoDTO);
+		assertNull(salidaParqueadero);
+
 	}
 
 }

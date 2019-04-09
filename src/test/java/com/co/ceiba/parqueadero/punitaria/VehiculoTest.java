@@ -79,7 +79,7 @@ public class VehiculoTest {
 
 		assertEquals(vehiculoDTO2.getPlaca(), PLACA);
 
-	}
+	} 
 
 	@Test
 	public void listarPorTipo() {

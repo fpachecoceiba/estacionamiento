@@ -5,9 +5,6 @@ public class TarifaDTO {
 	private Double valor;
 	private String tipoVehiculo;
 
-	public TarifaDTO() {
-		super(); 
-	}
 
 	public TarifaDTO(String modalidad, Double valor, String tipoVehiculo) {
 		super();
@@ -20,24 +17,14 @@ public class TarifaDTO {
 		return modalidad;
 	}
 
-	public void setModalidad(String modalidad) {
-		this.modalidad = modalidad;
-	}
-
 	public Double getValor() {
 		return valor;
-	}
-
-	public void setValor(Double valor) {
-		this.valor = valor;
 	}
 
 	public String getTipoVehiculo() {
 		return tipoVehiculo;
 	}
 
-	public void setTipoVehiculo(String tipoVehiculo) {
-		this.tipoVehiculo = tipoVehiculo;
-	}
+
 
 }
