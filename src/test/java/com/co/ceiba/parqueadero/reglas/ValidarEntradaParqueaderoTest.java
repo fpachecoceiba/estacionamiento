@@ -42,7 +42,7 @@ public class ValidarEntradaParqueaderoTest {
 	}
 
 	@Test
-	public void existeEntradaRegistradaTrue() {
+	public void existeEntradaRegistradaTrue() { 
 		EntradaParqueoRepository entradaParqueoRepository = mock(EntradaParqueoRepository.class);
 		ValidarEntradaParqueadero validarEntradaParqueadero = new ValidarEntradaParqueadero(entradaParqueoRepository);
 		Vehiculo vehiculo = null;

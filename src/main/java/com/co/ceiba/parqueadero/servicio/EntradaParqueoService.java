@@ -27,8 +27,7 @@ public class EntradaParqueoService {
 	private static final Integer STOCK_MOTO = 10;
 	private static final String MENSAJE_NOEXISTE_VEHICULO = "No existe un vehiculo registrado para esta informacion";
 
-	private LocalDateTime fechaEntrada = LocalDateTime.now(); 
-
+	
 	private EntradaParqueoRepository entradaParqueoRepository; 
 	private CarroRepository carroRepository;
 	private MotoRepository motoRepository;
@@ -42,10 +41,10 @@ public class EntradaParqueoService {
 		this.vehiculoRepository = vehiculoRepository;
 	}
 
-	public EntradaParqueoDTO registrar(VehiculoDTO vehiculoDTO) { 
+	public EntradaParqueoDTO registrar(VehiculoDTO vehiculoDTO,LocalDateTime fechaEntrada) { 
 	
 		String placa = vehiculoDTO.getPlaca();
-
+	
 		VehiculoDTO vehiculoDTO2 = vehiculoRepository.findByPlaca(placa);
 		if (vehiculoDTO2 == null) {
 			throw new ParqueaderoNoDisponibleException(MENSAJE_NOEXISTE_VEHICULO);

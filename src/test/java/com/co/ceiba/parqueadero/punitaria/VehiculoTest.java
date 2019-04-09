@@ -40,7 +40,7 @@ public class VehiculoTest {
 		assertEquals(TipoVehiculo.CARRO.toString(), carroDTO.getTipoVehiculo());
 		
 
-	} 
+	}  
 
 	@Test
 	public void guardarVehiculoMoto() {

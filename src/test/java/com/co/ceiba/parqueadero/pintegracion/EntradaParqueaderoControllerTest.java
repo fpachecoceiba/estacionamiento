@@ -64,6 +64,7 @@ public class EntradaParqueaderoControllerTest {
 		MotoDTO motoDTO = new MotoDTO(CILINDRAJE, PLACA_MOTO, TipoVehiculo.MOTO.toString());
 		mockMvc.perform(post(URL_MOTO).contentType(MediaType.APPLICATION_JSON).content(asJsonString(motoDTO)))
 				.andExpect(status().isOk());
+		
 		mockMvc.perform(
 				post(URL_ENTRADA).contentType(MediaType.APPLICATION_JSON).content(asJsonString(motoDTO)))
 				.andExpect(status().isOk());
@@ -73,7 +74,7 @@ public class EntradaParqueaderoControllerTest {
 				.andExpect(status().isOk()); 
  
 
-	}
+	} 
 	
 	public static String asJsonString(final Object obj) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
