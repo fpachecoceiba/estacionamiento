@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,21 +29,21 @@ public class EntradaParqueo {
 	@Column(name = "tipo_vehiculo", nullable = false)
 	private String tipoVehiculo;
  
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "placa")
-	private Vehiculo idVehiculo;
+	private Vehiculo vehiculo;
 
 	public EntradaParqueo() {
 		super();
 	} 
 
-	public EntradaParqueo(Long idEntrada, Timestamp fechaEntrada, Boolean activo, String tipoVehiculo,Vehiculo idVehiculo) {
+	public EntradaParqueo(Long idEntrada, Timestamp fechaEntrada, Boolean activo, String tipoVehiculo,Vehiculo vehiculo) {
 		super();
 		this.idEntrada = idEntrada;
 		this.fechaEntrada = fechaEntrada;
 		this.activo = activo;
 		this.tipoVehiculo = tipoVehiculo;
-		this.idVehiculo = idVehiculo;
+		this.vehiculo = vehiculo;
 	}
 
 	public Long getIdEntrada() {
@@ -74,12 +73,12 @@ public class EntradaParqueo {
 		this.tipoVehiculo = tipoVehiculo;
 	}
 
-	public Vehiculo getIdVehiculo() {
-		return idVehiculo;
+	public Vehiculo getVehiculo() {
+		return vehiculo;
 	}
 
-	public void setIdVehiculo(Vehiculo idVehiculo) {
-		this.idVehiculo = idVehiculo;
+	public void setPlaca(Vehiculo vehiculo) {
+		this.vehiculo = vehiculo;
 	}
 
 }

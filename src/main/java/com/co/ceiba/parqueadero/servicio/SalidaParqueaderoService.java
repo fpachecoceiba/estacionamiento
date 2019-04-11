@@ -58,7 +58,7 @@ public class SalidaParqueaderoService {
 		List<EntradaParqueoDTO> entradaParqueoDTO = entradaParqueoRepository.consultarActivaPorPlaca(placa);
 		Double valor = new CalcularTarifaSalida(tarifaRepository).getValorTarifa(tipoVehiculo, cilindraje,
 				entradaParqueoDTO.get(0).getFechaEntrada(), fechaSalida);
-
+		entradaParqueoDTO.get(0).setActivo(false);
 		SalidaParqueaderoDTO salidaParqueaderoDTO = new SalidaParqueaderoDTO();
 		salidaParqueaderoDTO.setEntradaParqueo(entradaParqueoDTO.get(0));
 		salidaParqueaderoDTO.setFechaSalida(fechaSalida);
@@ -66,6 +66,10 @@ public class SalidaParqueaderoService {
 
 		return salidaParqueaderoRepository.registrar(salidaParqueaderoDTO);
 
+	}
+
+	public List<SalidaParqueaderoDTO> consultar(String placa) {
+		return salidaParqueaderoRepository.consultar(placa);
 	}
 
 }

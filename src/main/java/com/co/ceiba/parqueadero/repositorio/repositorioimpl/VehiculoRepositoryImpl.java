@@ -56,9 +56,9 @@ public class VehiculoRepositoryImpl implements VehiculoRepository {
 		}
 		return null;
 	}
-
+ 
 	@Override
-	public List<VehiculoDTO> listarPorTipo(String tipoVehiculo) {
+	public List<VehiculoDTO> listarPorTipo(String tipoVehiculo) { 
 		TypedQuery<Vehiculo> query = entityManager
 				.createQuery("SELECT vh FROM vehiculo vh WHERE vh.tipoVehiculo = :tipoVehiculo ", Vehiculo.class);
 		query.setParameter("tipoVehiculo", tipoVehiculo);

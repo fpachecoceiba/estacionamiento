@@ -1,5 +1,6 @@
 package com.co.ceiba.parqueadero.pintegracion;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -23,10 +24,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class EntradaParqueaderoControllerTest {
-	private static final String URL_ENTRADA = "/apiv1/entrada/registrar";
-	private static final String URL_SALIDA = "/apiv1/salida/registrar";
-	private static final String URL_CARRO = "/apiv1/vehiculo/carro";
-	private static final String URL_MOTO = "/apiv1/vehiculo/moto";
+	private static final String URL_ENTRADA = "/apiv1/entradas";
+	private static final String URL_SALIDA = "/apiv1/salidas";
+	private static final String URL_CARRO = "/apiv1/vehiculos/carros";
+	private static final String URL_MOTO = "/apiv1/vehiculos/motos";
 	private static final String PLACA_CARRO = "PCL00288";
 	private static final String PLACA_MOTO = "PCL001";
 	private static final String MODELO = "2019";
@@ -55,6 +56,14 @@ public class EntradaParqueaderoControllerTest {
 		mockMvc.perform(
 				post(URL_SALIDA).contentType(MediaType.APPLICATION_JSON).content(asJsonString(carroDTO)))
 				.andExpect(status().isOk()); 
+		
+		
+		mockMvc.perform(
+				get(URL_ENTRADA).param("placa", PLACA_CARRO).contentType(MediaType.APPLICATION_JSON).content(asJsonString(carroDTO)))
+				.andExpect(status().isOk()); 
+		
+	 
+		 
 	 
 
 	}

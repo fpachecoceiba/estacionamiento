@@ -14,7 +14,7 @@ import com.co.ceiba.parqueadero.servicio.VehiculoService;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/apiv1/vehiculo")
+@RequestMapping("/apiv1/vehiculos")
 public class VehiculoController {
 
 
@@ -25,13 +25,13 @@ public class VehiculoController {
 	}
 	
 
-	@PostMapping("/carro")
+	@PostMapping("/carros")
 	public VehiculoDTO guardarCarro(@RequestBody CarroDTO carroDTO) {
 		return vehiculoService.guardar(carroDTO);
 	}
 
 
-	@PostMapping("/moto")
+	@PostMapping("/motos")
 	public VehiculoDTO guardarMoto(@RequestBody MotoDTO motoDTO) {
 		return vehiculoService.guardar(motoDTO);
 	}

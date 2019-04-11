@@ -22,6 +22,7 @@ import com.co.ceiba.parqueadero.dominio.TipoVehiculo;
 import com.co.ceiba.parqueadero.dominio.VehiculoDTO;
 import com.co.ceiba.parqueadero.entidad.Carro;
 import com.co.ceiba.parqueadero.entidad.Moto;
+import com.co.ceiba.parqueadero.repositorio.EntradaParqueoRepository;
 import com.co.ceiba.parqueadero.repositorio.VehiculoRepository;
 import com.co.ceiba.parqueadero.servicio.VehiculoService;
 
@@ -54,11 +55,12 @@ public class VehiculoTest {
 	@Test
 	public void registrarVehiculoCarro() { 
 		VehiculoRepository vehiculoRepository = mock(VehiculoRepository.class);
+		EntradaParqueoRepository entradaParqueoRepository = mock(EntradaParqueoRepository.class);
 
 		when(vehiculoRepository.registrar(Mockito.any(VehiculoDTO.class)))
 				.thenReturn(new VehiculoDTO( PLACA, TipoVehiculo.CARRO.toString()));
 
-		VehiculoService vehiculoService = new VehiculoService(vehiculoRepository);
+		VehiculoService vehiculoService = new VehiculoService(vehiculoRepository,entradaParqueoRepository);
 		VehiculoDTO vehiculoDTO = new CarroDTO(MODELO, PLACA, TipoVehiculo.CARRO.toString());
 		VehiculoDTO vehiculoDTO2 = vehiculoService.guardar(vehiculoDTO);
 
@@ -69,11 +71,12 @@ public class VehiculoTest {
 	@Test
 	public void registrarVehiculoMoto() {
 		VehiculoRepository vehiculoRepository = mock(VehiculoRepository.class);
+		EntradaParqueoRepository entradaParqueoRepository = mock(EntradaParqueoRepository.class);
 
 		when(vehiculoRepository.registrar(Mockito.any(VehiculoDTO.class)))
 				.thenReturn(new VehiculoDTO(PLACA, TipoVehiculo.MOTO.toString()));
 
-		VehiculoService vehiculoService = new VehiculoService(vehiculoRepository);
+		VehiculoService vehiculoService = new VehiculoService(vehiculoRepository,entradaParqueoRepository);
 		VehiculoDTO vehiculoDTO = new MotoDTO(CILINDRAJE, PLACA, TipoVehiculo.MOTO.toString());
 		VehiculoDTO vehiculoDTO2 = vehiculoService.guardar(vehiculoDTO);
 
@@ -84,9 +87,11 @@ public class VehiculoTest {
 	@Test
 	public void listarPorTipo() {
 		VehiculoRepository vehiculoRepository = mock(VehiculoRepository.class);
+		EntradaParqueoRepository entradaParqueoRepository = mock(EntradaParqueoRepository.class);
+
 		when(vehiculoRepository.listarPorTipo(TipoVehiculo.CARRO.toString()))
 				.thenReturn(Arrays.asList(new VehiculoDTO( PLACA, TipoVehiculo.CARRO.toString())));
-		VehiculoService vehiculoService = new VehiculoService(vehiculoRepository);
+		VehiculoService vehiculoService = new VehiculoService(vehiculoRepository,entradaParqueoRepository);
 		List<VehiculoDTO> listaVehiculo = vehiculoService.listarPorTipo(TipoVehiculo.CARRO.toString());
 		assertEquals(listaVehiculo.size(), 1);
 

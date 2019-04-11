@@ -14,13 +14,13 @@ public final class EntradaParqueaderoBuilder {
 	}
 	public static EntradaParqueoDTO getDTO(EntradaParqueo entradaParqueo) {
 		return new EntradaParqueoDTO(entradaParqueo.getIdEntrada(), entradaParqueo.getFechaEntrada().toLocalDateTime(),
-				entradaParqueo.getActivo(), entradaParqueo.getIdVehiculo());
+				entradaParqueo.getActivo(), entradaParqueo.getVehiculo());
 	}
 
 	public static EntradaParqueo getEntidad(EntradaParqueoDTO entradaParqueoDTO) {
 		return new EntradaParqueo(entradaParqueoDTO.getIdEntrada(),
 				Timestamp.valueOf(entradaParqueoDTO.getFechaEntrada()), entradaParqueoDTO.getActivo(),
-				entradaParqueoDTO.getIdVehiculo().getTipoVehiculo(), entradaParqueoDTO.getIdVehiculo());
+				entradaParqueoDTO.getVehiculo().getTipoVehiculo(), entradaParqueoDTO.getVehiculo());
 
 	}
 

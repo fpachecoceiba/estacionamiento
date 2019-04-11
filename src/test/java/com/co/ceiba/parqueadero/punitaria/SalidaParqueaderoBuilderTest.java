@@ -43,7 +43,7 @@ public class SalidaParqueaderoBuilderTest {
 		Vehiculo vehiculo = new Vehiculo();
 		vehiculo.setPlaca(PLACA);
 		vehiculo.setTipoVehiculo(TipoVehiculo.CARRO.toString());
-		entradaParqueoDTO.setIdVehiculo(vehiculo);
+		entradaParqueoDTO.setPlaca(vehiculo);
  
 		SalidaParqueadero salidaParqueadero = new SalidaParqueadero();
 		salidaParqueadero.setEntradaParqueo(EntradaParqueaderoBuilder.getEntidad(entradaParqueoDTO));
@@ -67,7 +67,7 @@ public class SalidaParqueaderoBuilderTest {
 		Vehiculo vehiculo = new Vehiculo();
 		vehiculo.setPlaca(PLACA);
 		vehiculo.setTipoVehiculo(TipoVehiculo.CARRO.toString());
-		entradaParqueoDTO.setIdVehiculo(vehiculo);
+		entradaParqueoDTO.setPlaca(vehiculo);
 
 		SalidaParqueaderoDTO salidaParqueaderoDTO = new SalidaParqueaderoDTO();
 		salidaParqueaderoDTO.setEntradaParqueo(entradaParqueoDTO);

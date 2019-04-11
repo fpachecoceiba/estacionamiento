@@ -3,11 +3,10 @@ package com.co.ceiba.parqueadero.entidad;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
 @Entity(name = "vehiculo")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "vehiculo")
 public class Vehiculo {
 	@Id
 	@Column(name = "placa", nullable = false)
@@ -15,9 +14,6 @@ public class Vehiculo {
 
 	@Column(name = "tipo_vehiculo", nullable = false)
 	private String tipoVehiculo;
-
-
-
 
 	public String getPlaca() {
 		return placa;
