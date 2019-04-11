@@ -59,11 +59,11 @@ public class EntradaParqueaderoControllerTest {
 		
 		
 		mockMvc.perform(
-				get(URL_ENTRADA).param("placa", PLACA_CARRO).contentType(MediaType.APPLICATION_JSON).content(asJsonString(carroDTO)))
+				get(URL_SALIDA).param("placa", PLACA_CARRO).contentType(MediaType.APPLICATION_JSON).content(asJsonString(carroDTO)))
 				.andExpect(status().isOk()); 
 		
 	 
-		 
+		  
 	 
 
 	}
@@ -78,12 +78,10 @@ public class EntradaParqueaderoControllerTest {
 				post(URL_ENTRADA).contentType(MediaType.APPLICATION_JSON).content(asJsonString(motoDTO)))
 				.andExpect(status().isOk());
 		
-		mockMvc.perform(
-				post(URL_SALIDA).contentType(MediaType.APPLICATION_JSON).content(asJsonString(motoDTO)))
-				.andExpect(status().isOk()); 
- 
+	
 
 	} 
+
 	
 	public static String asJsonString(final Object obj) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
