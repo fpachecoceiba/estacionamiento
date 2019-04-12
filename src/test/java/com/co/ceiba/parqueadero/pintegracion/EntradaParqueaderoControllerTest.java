@@ -40,7 +40,7 @@ public class EntradaParqueaderoControllerTest {
 	@Before
 	public void setup() {
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-	}
+	} 
 
 	@Test
 	public void registrarCarro() throws Exception {
@@ -62,9 +62,6 @@ public class EntradaParqueaderoControllerTest {
 				get(URL_SALIDA).param("placa", PLACA_CARRO).contentType(MediaType.APPLICATION_JSON).content(asJsonString(carroDTO)))
 				.andExpect(status().isOk()); 
 		
-	 
-		  
-	 
 
 	}
  

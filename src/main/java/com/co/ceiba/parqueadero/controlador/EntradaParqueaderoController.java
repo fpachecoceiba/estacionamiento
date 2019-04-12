@@ -20,23 +20,23 @@ import com.co.ceiba.parqueadero.servicio.EntradaParqueoService;
 @CrossOrigin("*")
 @RequestMapping("/apiv1/entradas")
 public class EntradaParqueaderoController {
-	private LocalDateTime fechaEntrada = LocalDateTime.now();
 
 	private EntradaParqueoService entradaParqueoService;
 
 	public EntradaParqueaderoController(EntradaParqueoService entradaParqueoService) {
 		this.entradaParqueoService = entradaParqueoService;
 	}
- 
+
 	@PostMapping
 	public EntradaParqueoDTO registrarIngreso(@RequestBody VehiculoDTO vehiculoDTO) {
+		LocalDateTime fechaEntrada = LocalDateTime.now();
 		return entradaParqueoService.registrar(vehiculoDTO, fechaEntrada);
 	}
 
 	@GetMapping
 	public List<EntradaParqueoDTO> listaTodas(@RequestParam(defaultValue = "true") Boolean activo,
 			@RequestParam Optional<String> tipo, @RequestParam Optional<String> placa) {
-		return entradaParqueoService.listarTodas(activo,tipo, placa);
+		return entradaParqueoService.listarTodas(activo, tipo, placa);
 
 	}
 

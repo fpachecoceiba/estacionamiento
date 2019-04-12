@@ -51,7 +51,7 @@ public class EntradaParqueoService {
 		}
 
 		String tipoVehiculo = vehiculoDTO2.getTipoVehiculo();
-
+ 
 		if (!new ValidarEntradaParqueadero(entradaParqueoRepository).ingresoValidoSegunDiaPlaca(placa, fechaEntrada)) {
 			throw new ParqueaderoNoDisponibleException(ValidarEntradaParqueadero.MENSAJE);
 		}

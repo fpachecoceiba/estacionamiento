@@ -44,8 +44,8 @@ public class EntradaParqueaderoTest {
 	private static final String MENSAJE_NOEXISTE_VEHICULO = "No existe un vehiculo registrado para esta informacion";
 
 	private LocalDateTime fechaEntrada = LocalDateTime.now();
-
-	@Test
+ 
+	@Test 
 	public void registrarCarro() {
 
 		VehiculoRepository vehiculoRepository = mock(VehiculoRepository.class);
@@ -67,6 +67,7 @@ public class EntradaParqueaderoTest {
 				vehiculoRepository, carroRepository, motoRepository);
 
 		EntradaParqueoDTO entradaParqueoDTO2 = entradaParqueoService.registrar(vehiculoDTO, fecha);
+		
 		assertTrue(entradaParqueoDTO2.getActivo());
 
 	}
@@ -158,5 +159,7 @@ public class EntradaParqueaderoTest {
 		}
 
 	}
+	
+	
 
 }

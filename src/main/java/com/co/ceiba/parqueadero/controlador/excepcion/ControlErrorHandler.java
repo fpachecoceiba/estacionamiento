@@ -16,7 +16,7 @@ import com.co.ceiba.parqueadero.dominio.excepcion.RegistroNoExisteException;
 @ControllerAdvice
 @CrossOrigin("*")
 public class ControlErrorHandler { 
-
+ 
 	@ExceptionHandler(RegistroNoExisteException.class)
 	public ResponseEntity<RespuestaErrorDTO> handleException(RegistroNoExisteException ex, WebRequest request) {
 		RespuestaErrorDTO excepcion = new RespuestaErrorDTO(Calendar.getInstance().getTime(), ex.getMessage(),

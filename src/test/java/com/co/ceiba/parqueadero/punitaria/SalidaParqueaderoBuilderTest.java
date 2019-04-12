@@ -33,7 +33,7 @@ public class SalidaParqueaderoBuilderTest {
 	private static final LocalDateTime FECHA_ENTRADA = LocalDateTime.parse(STRING_FECHA_ENTRADA, FORMATTER);
 	private static final String STRING_FECHA_SALIDA = "2019-04-04 01:00:00";
 	private static final LocalDateTime FECHA_SALIDA = LocalDateTime.parse(STRING_FECHA_SALIDA, FORMATTER);
-
+ 
 	@Test
 	public void salidaBuilderDTO() {
 		EntradaParqueoDTO entradaParqueoDTO = new EntradaParqueoDTO();

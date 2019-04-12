@@ -51,7 +51,7 @@ public class EntradaParqueoRepositoryImpl implements EntradaParqueoRepository {
 
 	}
 
-	@Override
+	@Override 
 	public List<EntradaParqueoDTO> listarTodas(Boolean activo,Optional<String> tipo, Optional<String> placa) {
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<EntradaParqueo> criteria = builder.createQuery(EntradaParqueo.class);
@@ -75,7 +75,7 @@ public class EntradaParqueoRepositoryImpl implements EntradaParqueoRepository {
 		return entityManager.createQuery(criteria).getResultStream().map(EntradaParqueaderoBuilder::getDTO)
 				.collect(Collectors.toList());
 	}
-
+ 
 	@Override
 	public EntradaParqueoDTO guardar(EntradaParqueoDTO entradaParqueoDTO) {
 
